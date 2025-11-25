@@ -1,6 +1,6 @@
 # 📢 Presentaciones y Charlas Técnicas (Web-Based)
 
-[![Author](https://img.shields.io/badge/Author-[TU%20NOMBRE]-blueviolet?style=flat-square)](https://github.com/[TU-USUARIO])
+[![Author](https://img.shields.io/badge/Author-[VECH]-blueviolet?style=flat-square)](https://github.com/[TU-USUARIO])
 [![Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)](https://github.com/[TU-USUARIO]/[NOMBRE-REPO])
 [![Tech](https://img.shields.io/badge/Tech-HTML%20%7C%20JS%20%7C%20CSS-orange?style=flat-square)](https://developer.mozilla.org)
 
@@ -81,4 +81,4 @@ Este proyecto está bajo la Licencia **MIT** - eres libre de usar el código de 
 
 ---
 
-Hecho con ❤️ y mucho ☕ por **[Tu Nombre]**.
+Hecho con ❤️ y mucho ☕ por **[Victor Huallpa huahuacondori (VECH)]**.
