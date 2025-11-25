@@ -1,138 +1,84 @@
-# Piscifactorías de los Andes (Puno, Perú)  
-## Historia, Línea del Tiempo y Desarrollo Empresarial  
-**Documento profesional elaborado en formato Markdown**
+# 📢 Presentaciones y Charlas Técnicas (Web-Based)
+
+[![Author](https://img.shields.io/badge/Author-[TU%20NOMBRE]-blueviolet?style=flat-square)](https://github.com/[TU-USUARIO])
+[![Status](https://img.shields.io/badge/Status-Active-success?style=flat-square)](https://github.com/[TU-USUARIO]/[NOMBRE-REPO])
+[![Tech](https://img.shields.io/badge/Tech-HTML%20%7C%20JS%20%7C%20CSS-orange?style=flat-square)](https://developer.mozilla.org)
+
+> "Como desarrollador, prefiero el código sobre el *drag-and-drop*. Este repositorio contiene mis presentaciones diseñadas como aplicaciones web, aprovechando el poder del navegador para crear experiencias interactivas."
 
 ---
 
-## 1. Introducción
+## 📖 Acerca del Proyecto
 
-Piscifactorías de los Andes S.A. —conocida como *Piscis*— es una empresa pionera en la crianza y procesamiento de trucha arcoíris (*Oncorhynchus mykiss*) en el altiplano peruano. Fundada a finales de los años 70, creció desde una operación regional hasta convertirse en un actor clave en la exportación de productos acuícolas, articulando productores locales y modernizando la cadena de valor acuícola en Puno.
+Este repositorio centraliza las presentaciones, ponencias y charlas que he impartido. A diferencia de las herramientas tradicionales (Canva, PowerPoint), he decidido **construir mis propios slides** utilizando tecnologías web.
 
----
-
-## 2. Línea del Tiempo (1978–2025)
-
-### ➤ **Década de 1970 — Fundación y primeros ensayos (ca. 1978)**
-- Inicio de operaciones en Puno aprovechando la disponibilidad hídrica del altiplano.
-- Construcción de pozas rústicas y primeros cultivos experimentales.
-- Producción dedicada principalmente al mercado regional (consumo fresco).
-
-### ➤ **Década de 1980 — Consolidación regional**
-- Expansión de pozas y mejora en técnicas semi-intensivas.
-- Llegada a mercados regionales: Juliaca, Cusco y Arequipa.
-- Capacitación a productores rurales que querían iniciarse en la truchicultura.
-
-### ➤ **Década de 1990 — Industrialización**
-- Construcción de la primera planta de proceso (fileteado, eviscerado y congelado).
-- Implementación de estándares sanitarios necesarios para exportación.
-- Integración de pequeños productores a una red de abastecimiento estable.
-
-### ➤ **Década de 2000 — Expansión y exportación**
-- Ingreso a programas de fortalecimiento productivo (CAF, PRODUCE, cooperación internacional).
-- Exportaciones iniciales a EE. UU., Europa y Japón.
-- Introducción de productos de valor agregado: trucha ahumada, empanizada, filete al vacío.
-- Fortalecimiento de cadena de frío y empaque.
-
-### ➤ **Década de 2010 — Liderazgo nacional**
-- Puno se convierte en la principal región productora de trucha del Perú.
-- Piscifactorías de los Andes aparece entre las empresas líderes del sector.
-- Articulación de cientos de familias acuicultoras a la cadena exportadora.
-- Mayor profesionalización: trazabilidad, inocuidad, certificaciones.
-
-### ➤ **2020–2025 — Modernización y sostenibilidad**
-- Adopción de prácticas sostenibles: manejo de efluentes, mejor uso de alimento balanceado.
-- Participación en programas de formalización (CITE, PRODUCE).
-- Promoción de inclusión de mujeres acuicultoras.
-- Mejora en prácticas de exportación y en la cadena logística.
+### ¿Por qué slides en formato web?
+* **Control Total:** Personalización pixel-perfect usando CSS.
+* **Interactividad:** Demos en vivo integradas y ejecución de código en tiempo real.
+* **Versionado:** Historial de cambios y colaboración mediante Git.
+* **Performance:** Carga rápida y accesibilidad desde cualquier navegador sin software extra.
 
 ---
 
-## 3. Desarrollo del Modelo de Negocio
+## 🗂️ Catálogo de Presentaciones
 
-### 3.1 Integración vertical parcial
-- Producción propia en pozas altoandinas.
-- Compra y articulación de productores rurales.
-- Procesamiento en planta certificada para mercados nacionales e internacionales.
+A continuación encontrarás el listado de temas cubiertos hasta la fecha. Haz clic en "Ver Demo" para abrir la presentación en tu navegador o en "Código" para ver la implementación.
 
-### 3.2 Innovación tecnológica
-- Implementación de aireadores y sistemas de recirculación parcial.
-- Alimentación con balanceados certificados.
-- Clasificación por tallas para reducir mortalidad.
-- Cadena de frío continua desde cosecha hasta empaque.
-
-### 3.3 Relación con pequeños productores
-- Funciona como comprador ancla.
-- Capacitación técnica a asociaciones y familias productoras.
-- Apoyo en formalización, controles sanitarios y permisos.
-- Estabilización de precios mediante compra regular sin intermediarios.
-
-### 3.4 Diversificación de productos
-- Trucha fresca entera.
-- Filete congelado.
-- Productos ahumados.
-- Productos listos para consumo (empanizados).
-- Presentaciones al vacío para exportación.
+| Fecha | Título de la Presentación | Tecnologías / Stack | Enlaces | Estado |
+| :--- | :--- | :--- | :--- | :--- |
+| **YYYY-MM-DD** | **[Título Principal de la Presentación 1]** <br> _Una breve descripción de una línea sobre el tema._ | ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white) ![JS](https://img.shields.io/badge/-JS-F7DF1E?logo=javascript&logoColor=black) | [🌐 Ver Demo](#) <br> [💻 Código](./ruta/carpeta-1) | ✅ Finalizado |
+| **YYYY-MM-DD** | **[Título Principal de la Presentación 2]** <br> _Descripción sobre arquitectura o backend._ | ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=black) ![Reveal.js](https://img.shields.io/badge/-Reveal.js-white?logo=reveal.js&logoColor=black) | [🌐 Ver Demo](#) <br> [💻 Código](./ruta/carpeta-2) | ✅ Finalizado |
+| **YYYY-MM-DD** | **[Título Principal de la Presentación 3]** <br> _Descripción sobre tema de sistemas._ | ![Astro](https://img.shields.io/badge/-Astro-FF5D01?logo=astro&logoColor=white) | [🌐 Ver Demo](#) <br> [💻 Código](./ruta/carpeta-3) | 🚧 WIP |
 
 ---
 
-## 4. Retos Históricos y Actuales
+## 🚀 Próximos Temas (Roadmap)
 
-### 4.1 Competencia y precios
-- Competencia con salmón importado y trucha de Chile.
-- Necesidad de mantener altos estándares sin elevar costos.
+Espacio reservado para futuras charlas e investigaciones en desarrollo.
 
-### 4.2 Logística altoandina
-- Transporte en frío costoso.
-- Carreteras y distancias extensas.
-- Cadena de frío estricta.
-
-### 4.3 Sostenibilidad ambiental
-- Manejo de sedimentos y efluentes.
-- Control de escapes y bioseguridad.
-- Reducción del impacto en cuerpos de agua.
-
-### 4.4 Financiamiento rural
-- Pequeños productores dependen de créditos y asistencia técnica.
-- Limitaciones para adquirir tecnología moderna.
+- [ ] **Arquitectura de Microservicios con Docker:** _En fase de planificación._
+- [ ] **Optimización de Bases de Datos SQL:** _Borrador de estructura._
+- [ ] **Introducción a WebAssembly:** _Pendiente de fecha._
 
 ---
 
-## 5. Logros e Impactos Regionales
+## 🛠️ Instalación y Uso Local
 
-### 5.1 Generación de empleo local
-- Empleo directo en planta y centros de cultivo.
-- Empleo indirecto: transporte, alimento, maquinaria.
+Si deseas ejecutar estas presentaciones en tu entorno local para ver el código fuente o modificarlas:
 
-### 5.2 Formalización productiva
-- Estímulo a la formalización de asociaciones y plantas artesanales.
-- Establecimiento de estándares sanitarios y técnicos.
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone [https://github.com/](https://github.com/)[TU-USUARIO]/[NOMBRE-REPO].git
+    ```
 
-### 5.3 Exportación internacional
-- Exportaciones a EE. UU., Europa, Japón, España y Países Bajos.
-- Reconocimiento de la trucha de Puno como producto de calidad mundial.
+2.  **Instalar dependencias (si aplica):**
+    ```bash
+    cd [NOMBRE-REPO]
+    npm install
+    ```
 
-### 5.4 Inclusión socioeconómica
-- Integración de familias rurales a cadenas de valor.
-- Expansión de oportunidades económicas en zonas altoandinas.
-
----
-
-## 6. Situación Actual (2024–2025)
-
-- Piscifactorías de los Andes sigue siendo una empresa líder en el sector truchícola peruano.
-- Mantiene operaciones de exportación y diversificación de productos.
-- Participa en programas gubernamentales y privados para mejorar inocuidad y formalización.
-- La truchicultura continúa siendo una de las principales actividades económicas de Puno.
-- Se investiga y adopta progresivamente nuevas tecnologías como sistemas RAS y automatización básica.
+3.  **Ejecutar servidor de desarrollo:**
+    ```bash
+    npm run dev
+    # O abre el archivo index.html directamente en tu navegador
+    ```
 
 ---
 
-## 7. Fuentes Utilizadas (todas reales)
-- Tesis de PUCP, UNAP y UNSA sobre truchicultura y Piscifactorías de los Andes.  
-- Reportes del Ministerio de la Producción (PRODUCE) y RNIA sobre acuicultura.  
-- Fichas de empresas en ConnectAmericas.  
-- Informes de CAF, FAO y organismos técnicos de desarrollo rural.  
-- Noticias y reportes en SEA Acuicultura, prensa nacional y regional.  
-- Planes regionales de desarrollo acuícola del Gobierno Regional de Puno.
+## 🤝 Contribuciones y Feedback
+
+Si encuentras algún error en el código mostrado en las diapositivas o tienes una sugerencia para mejorar la interactividad:
+
+1.  Haz un Fork del proyecto.
+2.  Crea una rama para tu mejora (`git checkout -b feature/mejora-slides`).
+3.  Abre un Pull Request.
 
 ---
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia **MIT** - eres libre de usar el código de estos slides para tus propios proyectos educativos.
+
+---
+
+Hecho con ❤️ y mucho ☕ por **[Tu Nombre]**.
