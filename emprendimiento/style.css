@@ -655,6 +655,20 @@ p {
 /* Mobile Optimizations */
 @media (max-width: 768px) {
 
+    /* Fix scroll snap for mobile - allow natural scrolling */
+    .presentation-container {
+        scroll-snap-type: y proximity;
+        /* Less strict snapping */
+    }
+
+    /* Allow slides to expand to fit content */
+    .slide {
+        height: auto;
+        min-height: 100vh;
+        padding: 3rem 1rem;
+        scroll-snap-align: start;
+    }
+
     /* Navigation adjustments */
     .navigation {
         bottom: 1rem;
@@ -721,17 +735,27 @@ p {
     }
 
     /* Layout adjustments */
-    .slide {
-        padding: 2rem 1rem;
-    }
-
     .text-content,
     .image-content {
         padding: 2rem 1.5rem;
+        height: auto;
+        min-height: auto;
     }
 
     .content-wrapper {
         width: 95%;
+        padding: 1rem 0;
+    }
+
+    /* Ensure split layouts stack properly */
+    .layout-split,
+    .layout-split-reverse {
+        min-height: auto;
+    }
+
+    .layout-split-reverse .image-content {
+        height: auto;
+        min-height: 300px;
     }
 
     /* Grid adjustments */
@@ -772,6 +796,7 @@ p {
     .chart-container {
         padding: 1.5rem;
         margin: 1.5rem auto;
+        max-width: 100%;
     }
 
     .bar-chart {
@@ -801,6 +826,7 @@ p {
     .step-list li {
         padding-left: 2.5rem;
         margin-bottom: 1rem;
+        font-size: 0.95rem;
     }
 
     .step-list li::before {
@@ -819,6 +845,11 @@ p {
         width: 90%;
     }
 
+    .image-placeholder {
+        font-size: 0.85rem;
+        padding: 1rem;
+    }
+
     /* Achievement cards */
     .achievement {
         padding: 1.5rem;
@@ -829,9 +860,17 @@ p {
         font-size: 2.5rem;
     }
 
+    .achievement p {
+        font-size: 0.95rem;
+    }
+
     /* Meta info */
     .meta-info {
         margin-top: 1.5rem;
+    }
+
+    .meta-info p {
+        font-size: 0.9rem;
     }
 
     .footer-credits {
@@ -842,12 +881,29 @@ p {
     /* Ensure touch-friendly spacing */
     .layout-hero .content-wrapper,
     .layout-centered .content-wrapper {
-        padding: 0 1rem;
+        padding: 2rem 1rem;
+    }
+
+    /* Fix header area for grid layouts */
+    .header-area {
+        margin-bottom: 1.5rem;
+    }
+
+    .layout-grid,
+    .layout-gallery {
+        padding: 3rem 1.5rem;
     }
 }
 
 /* Extra small devices */
 @media (max-width: 480px) {
+
+    /* Even more flexible slides */
+    .slide {
+        padding: 2.5rem 0.75rem;
+        min-height: 100vh;
+    }
+
     h1.main-title {
         font-size: 2rem;
     }
@@ -890,5 +946,22 @@ p {
     .text-content,
     .image-content {
         padding: 1.5rem 1rem;
+    }
+
+    .chart-container {
+        padding: 1rem;
+    }
+
+    .bar-label {
+        min-width: 70px;
+        font-size: 0.75rem;
+    }
+
+    .grid-item h4 {
+        font-size: 1rem;
+    }
+
+    .grid-item p {
+        font-size: 0.9rem;
     }
 }
