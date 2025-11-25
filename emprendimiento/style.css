@@ -38,10 +38,36 @@ body {
     z-index: 100;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
     font-family: var(--font-display);
     font-weight: 700;
     color: var(--accent-primary);
+}
+
+.back-button {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-primary);
+    transform: translateX(-5px);
+}
+
+.back-button svg {
+    width: 24px;
+    height: 24px;
 }
 
 .progress-bar {
