@@ -1,0 +1,67 @@
+/* PDF Print Styles - Fallback for better PDF rendering */
+@media print,
+screen {
+
+    /* Force solid colors for gradient text elements */
+    h1.main-title {
+        -webkit-text-fill-color: #00d4ff !important;
+        color: #00d4ff !important;
+        background: none !important;
+    }
+
+    .big-statement {
+        -webkit-text-fill-color: #ff6b9d !important;
+        color: #ff6b9d !important;
+        background: none !important;
+    }
+
+    .stat-number {
+        -webkit-text-fill-color: #00d4ff !important;
+        color: #00d4ff !important;
+        background: none !important;
+    }
+
+    .gradient-text {
+        -webkit-text-fill-color: #00d4ff !important;
+        color: #00d4ff !important;
+        background: none !important;
+    }
+
+    /* Ensure all backgrounds are visible */
+    .bar-fill {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+    }
+
+    /* Make sure all elements are visible */
+    .slide {
+        page-break-after: always;
+        page-break-inside: avoid;
+    }
+
+    /* Remove transitions and animations for PDF */
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* PDF-specific class to apply when generating PDF */
+.pdf-mode h1.main-title {
+    -webkit-text-fill-color: #00d4ff !important;
+    color: #00d4ff !important;
+    background: none !important;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.pdf-mode .big-statement {
+    -webkit-text-fill-color: #ff6b9d !important;
+    color: #ff6b9d !important;
+    background: none !important;
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+}
+
+.pdf-mode .stat-number {
+    -webkit-text-fill-color: #00d4ff !important;
+    color: #00d4ff !important;
+    background: none !important;
+}

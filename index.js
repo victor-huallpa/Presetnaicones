@@ -31,9 +31,53 @@ class ThemeManager {
 }
 
 // ==========================================
+// PDF DOWNLOAD MANAGER
+// ==========================================
+class PDFDownloader {
+    constructor() {
+        this.buttons = document.querySelectorAll('.btn-download-pdf');
+        this.init();
+    }
+
+    init() {
+        this.buttons.forEach(button => {
+            button.addEventListener('click', (e) => this.handleDownload(e));
+        });
+    }
+
+    handleDownload(event) {
+        const button = event.currentTarget;
+        const presentationUrl = button.dataset.presentationUrl;
+        const presentationName = button.dataset.presentationName;
+
+        if (!presentationUrl || !presentationName) {
+            console.error('Missing presentation URL or name');
+            return;
+        }
+
+        // Create full URL
+        const baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+        const fullUrl = `${baseUrl}/${presentationUrl}`;
+
+        // Simply open the presentation in a new tab
+        window.open(fullUrl, '_blank');
+
+        // Visual feedback
+        const originalText = button.querySelector('span').textContent;
+        button.querySelector('span').textContent = '¡Abierto!';
+
+        setTimeout(() => {
+            button.querySelector('span').textContent = originalText;
+        }, 1500);
+    }
+}
+
+
+// ==========================================
 // PRESENTATION COUNTER
 // ==========================================
 class PresentationCounter {
+
     constructor() {
         this.countElement = document.getElementById('presentationCount');
         this.targetCount = this.calculatePresentationCount();
@@ -231,6 +275,7 @@ class PerformanceOptimizer {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize all components
     new ThemeManager();
+    new PDFDownloader();
     new PresentationCounter();
     new ScrollAnimations();
     new SmoothScroll();
@@ -280,6 +325,7 @@ function throttle(func, limit) {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         ThemeManager,
+        PDFDownloader,
         PresentationCounter,
         ScrollAnimations,
         SmoothScroll,
