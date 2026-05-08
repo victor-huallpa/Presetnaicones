@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentaciones | Victor Huallpa</title>
+    <meta name="description"
+        content="Colección de presentaciones interactivas desarrolladas con tecnologías web modernas">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Effects -->
+    <div class="background-effects">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span class="logo-text">Presentaciones</span>
+                </div>
+                <nav class="nav">
+                    <a href="#presentaciones" class="nav-link">Presentaciones</a>
+                    <a href="#about" class="nav-link">Acerca de</a>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" />
+                            <path
+                                d="M12 1V3M12 21V23M23 12H21M3 12H1M20.485 20.485L19.071 19.071M4.929 4.929L3.515 3.515M20.485 3.515L19.071 4.929M4.929 19.071L3.515 20.485"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Presentaciones Web Interactivas</span>
+                </div>
+                <h1 class="hero-title">
+                    Charlas Técnicas
+                    <span class="gradient-text">Diseñadas con Código</span>
+                </h1>
+                <p class="hero-description">
+                    Presentaciones construidas con tecnologías web modernas. Control total, interactividad real y
+                    versionado mediante Git.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="presentationCount">1</div>
+                        <div class="stat-label">Presentaciones</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Web-Based</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Interactividad</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presentations Grid -->
+    <section class="presentations" id="presentaciones">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Catálogo de Presentaciones</h2>
+                <p class="section-description">Explora las presentaciones disponibles. Haz clic para ver cada una en
+                    acción.</p>
+            </div>
+
+            <div class="presentations-grid" id="presentationsGrid">
+                <!-- Presentation Card 1 - Emprendimiento -->
+                <article class="presentation-card" data-category="business">
+                    <div class="card-image">
+                        <div class="card-image-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="card-overlay">
+                            <a href="./emprendimiento/index.html" class="card-link">
+                                <span>Ver Presentación</span>
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag tag-business">Negocios</span>
+                            <span class="tag tag-tech">HTML/CSS/JS</span>
+                        </div>
+                        <h3 class="card-title">Emprendimiento</h3>
+                        <p class="card-description">
+                            Presentación sobre emprendimiento, innovación y desarrollo de negocios en la era digital.
+                        </p>
+                        <div class="card-footer">
+                            <div class="card-meta">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor"
+                                        stroke-width="2" />
+                                    <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" />
+                                    <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" />
+                                    <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2" />
+                                </svg>
+                                <span>2024</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn-download-pdf" data-presentation-url="./emprendimiento/index.html"
+                                    data-presentation-name="Emprendimiento" title="Descargar como PDF">
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    <span>PDF</span>
+                                </button>
+                                <div class="card-status status-completed">
+                                    <span class="status-dot"></span>
+                                    <span>Completado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Placeholder for future presentations -->
+                <article class="presentation-card card-placeholder">
+                    <div class="card-image">
+                        <div class="card-image-placeholder placeholder-animation">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag tag-upcoming">Próximamente</span>
+                        </div>
+                        <h3 class="card-title">Nueva Presentación</h3>
+                        <p class="card-description">
+                            Espacio reservado para futuras charlas e investigaciones en desarrollo.
+                        </p>
+                        <div class="card-footer">
+                            <div class="card-status status-wip">
+                                <span class="status-dot"></span>
+                                <span>En desarrollo</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">¿Por qué slides en formato web?</h2>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Control Total</h3>
+                                <p>Personalización pixel-perfect usando CSS y control absoluto sobre cada elemento.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor"
+                                        stroke-width="2" />
+                                    <path d="M8 21H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                    <path d="M12 17V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Interactividad</h3>
+                                <p>Demos en vivo integradas y ejecución de código en tiempo real.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+                                    <path
+                                        d="M12 1V3M12 21V23M23 12H21M3 12H1M20.485 20.485L19.071 19.071M4.929 4.929L3.515 3.515M20.485 3.515L19.071 4.929M4.929 19.071L3.515 20.485"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Versionado</h3>
+                                <p>Historial de cambios y colaboración mediante Git.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Performance</h3>
+                                <p>Carga rápida y accesibilidad desde cualquier navegador sin software extra.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="code-window">
+                        <div class="code-window-header">
+                            <div class="code-window-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="code-window-title">presentation.html</div>
+                        </div>
+                        <div class="code-window-content">
+                            <pre><code><span class="code-tag">&lt;section</span> <span class="code-attr">class</span>=<span class="code-string">"slide"</span><span class="code-tag">&gt;</span>
+  <span class="code-tag">&lt;h1</span> <span class="code-attr">class</span>=<span class="code-string">"title"</span><span class="code-tag">&gt;</span>
+    Mi Presentación
+  <span class="code-tag">&lt;/h1&gt;</span>
+  <span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-string">"demo"</span><span class="code-tag">&gt;</span>
+    <span class="code-comment">&lt;!-- Demo interactivo --&gt;</span>
+  <span class="code-tag">&lt;/div&gt;</span>
+<span class="code-tag">&lt;/section&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>Hecho con ❤️ y mucho ☕ por <strong>Victor Huallpa Huahuacondori (VECH)</strong></p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/victor-huallpa" target="_blank" rel="noopener noreferrer"
+                        class="footer-link">
+                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

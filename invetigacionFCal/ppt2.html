@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Automatización de Formularios | Redes Neuronales | Slider Interactivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #05050A;
+            color: #eef2ff;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Canvas de fondo futurista */
+        #canvas-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Slider Container */
+        .slider-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slides-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 2rem 3rem;
+            scrollbar-width: thin;
+        }
+
+        .slide::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .slide::-webkit-scrollbar-track {
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .slide::-webkit-scrollbar-thumb {
+            background: #0ff;
+            border-radius: 10px;
+        }
+
+        /* Contenido interno */
+        .slide-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Navegación */
+        .nav-btn {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            border-radius: 60px;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.3s;
+            color: #0ff;
+            font-size: 2rem;
+            font-weight: 300;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+            border-color: #0ff;
+        }
+
+        .nav-prev {
+            left: 20px;
+        }
+
+        .nav-next {
+            right: 20px;
+        }
+
+        /* Indicadores (dots) */
+        .indicators {
+            position: fixed;
+            bottom: 25px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 20;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #0ff;
+            transform: scale(1.3);
+            box-shadow: 0 0 10px #0ff;
+        }
+
+        /* Estilos de tarjetas y elementos */
+        .badge {
+            background: rgba(0, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 255, 0.4);
+            border-radius: 100px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: #0ff;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffffff, #00ffff, #7b2f9d);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #0ff, transparent);
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #a0aec0;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        .metrics {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metric-card {
+            background: rgba(15, 25, 35, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 28px;
+            padding: 1.2rem 2rem;
+            text-align: center;
+            min-width: 150px;
+            transition: transform 0.3s;
+        }
+
+        .metric-card:hover {
+            border-color: #0ff;
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0ff;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: rgba(10, 20, 30, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            border-radius: 32px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 255, 255, 0.5);
+            transform: translateY(-6px);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #0ff;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+
+        .tech-item {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .image-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .img-placeholder {
+            background: linear-gradient(145deg, #0f1a24, #081016);
+            border-radius: 24px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .img-placeholder svg {
+            width: 70px;
+            height: 70px;
+            opacity: 0.9;
+        }
+
+        .img-placeholder p {
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: #0ff;
+        }
+
+        .team-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .team-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #6c7a91;
+            font-size: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 1.5rem;
+            }
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+            .metric-card {
+                padding: 0.8rem 1rem;
+                min-width: 120px;
+            }
+            .metric-value {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas-bg"></canvas>
+
+<div class="slider-container">
+    <div class="slides-wrapper" id="slidesWrapper">
+        <!-- SLIDE 1 - INTRO / HERO -->
+        <div class="slide">
+            <div class="slide-content">
+                <div class="badge">✦ INVESTIGACIÓN FORMATIVA 2026-I ✦</div>
+                <h1>Automatización de<br>Formularios Académicos</h1>
+                <p class="subtitle">Redes Neuronales de bajo costo para el reconocimiento de dígitos manuscritos — Alternativa open source frente al software propietario.</p>
+                
+                <div class="metrics">
+                    <div class="metric-card">
+                        <div class="metric-value">>90%</div>
+                        <div class="metric-label">Precisión esperada</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">&lt;2s</div>
+                        <div class="metric-label">Tiempo de proceso</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">MLP+SGD</div>
+                        <div class="metric-label">Arquitectura</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">Open Source</div>
+                        <div class="metric-label">Sin licencias</div>
+                    </div>
+                </div>
+
+                <div class="image-showcase">
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="30" width="60" height="40" rx="4" stroke="#0ff" stroke-width="1.5" fill="none"/>
+                            <text x="35" y="55" fill="#0ff" font-size="18" font-family="monospace">7</text>
+                            <text x="55" y="55" fill="#0ff" font-size="18" font-family="monospace">3</text>
+                            <text x="45" y="70" fill="#8a9bb5" font-size="8">MNIST</text>
+                        </svg>
+                        <p>Dataset MNIST | Dígitos manuscritos</p>
+                    </div>
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="40" r="15" stroke="#0ff" stroke-width="1.5" fill="none"/>
+                            <line x1="50" y1="55" x2="50" y2="70" stroke="#0ff" stroke-width="1.5"/>
+                            <line x1="35" y1="65" x2="65" y2="65" stroke="#0ff" stroke-width="1.5"/>
+                            <text x="45" y="88" fill="#8a9bb5" font-size="8">Perceptrón Multicapa</text>
+                        </svg>
+                        <p>Red Neuronal MLP + Backpropagation</p>
+                    </div>
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="25" y="35" width="50" height="30" rx="3" stroke="#0ff" stroke-width="1.5"/>
+                            <text x="35" y="55" fill="#0ff" font-size="12">CSV</text>
+                            <path d="M70 45 L80 45 L80 55 L70 55" stroke="#0ff" fill="none"/>
+                            <text x="45" y="85" fill="#8a9bb5" font-size="7">Estructura JSON/CSV</text>
+                        </svg>
+                        <p>Pipeline → Datos estructurados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 - PROBLEMA Y SOLUCIÓN -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>⚠️ Problema & Solución</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-icon">📋</div>
+                        <h3>Problema Central</h3>
+                        <p>La transcripción manual de datos numéricos en formularios académicos genera <strong>lentitud, errores humanos y exclusión tecnológica</strong>. En regiones del sur peruano (Arequipa, Cusco, Puno), el software de automatización tiene costos en dólares inaccesibles para estudiantes de bajos recursos.</p>
+                        <div class="tech-stack">
+                            <span class="tech-item">+60% tiempo perdido</span>
+                            <span class="tech-item">Error humano frecuente</span>
+                            <span class="tech-item">Brecha digital</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h3>Solución Propuesta</h3>
+                        <p>Sistema <strong>open source</strong> basado en <strong>Perceptrón Multicapa (MLP)</strong> entrenado con SGD + retropropagación sobre MNIST. Automatiza el reconocimiento de dígitos en formularios escaneados, generando salidas estructuradas (CSV) en menos de 2 segundos con >90% de precisión.</p>
+                        <div class="tech-stack">
+                            <span class="tech-item">Código abierto</span>
+                            <span class="tech-item">Bajo costo</span>
+                            <span class="tech-item">Sin dependencia de nube</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 1rem;">
+                    <h3>📊 Contexto en cifras</h3>
+                    <p>Según el Foro Económico Mundial (2023) y la Agenda Digital Perú 2030, la automatización de tareas administrativas es clave, pero las soluciones propietarias presentan barreras de pago. Este proyecto demuestra que una MLP simple puede ser igual de efectiva con costo cero.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 - OBJETIVOS -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🎯 Objetivos de Investigación</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>🎯 Objetivo General</h3>
+                        <p>Implementar un sistema de reconocimiento automático de dígitos manuscritos basado en redes neuronales con aprendizaje estocástico (Perceptrón Multicapa) de código abierto para optimizar la recolección manual de información que afecta a estudiantes e investigadores.</p>
+                    </div>
+                    <div class="card">
+                        <h3>📌 Objetivos Específicos</h3>
+                        <ul style="margin-left: 1.2rem; line-height: 1.8;">
+                            <li>Diseñar y entrenar MLP con precisión >90% en MNIST</li>
+                            <li>Desarrollar pipeline de conversión a CSV estructurado</li>
+                            <li>Validar reducción de tiempo vs transcripción manual</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 1rem; text-align: center;">
+                    <h3>🔬 Enfoque Metodológico</h3>
+                    <p><strong>Cuantitativo + Experimental:</strong> Se medirá exactitud (accuracy), tiempo de procesamiento y tasa de error. Comparativa con proceso manual tradicional.</p>
+                    <div class="tech-stack" style="justify-content: center;">
+                        <span class="tech-item">MNIST (60k imágenes)</span>
+                        <span class="tech-item">Validación cruzada</span>
+                        <span class="tech-item">Métricas: precisión, recall, F1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 - TECNOLOGÍA Y ARQUITECTURA -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>⚙️ Stack Tecnológico</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>🧠 Red Neuronal</h3>
+                        <p>Perceptrón Multicapa estándar con una capa oculta de 128 neuronas. Función de activación ReLU para capas ocultas y Softmax para salida. Entrenamiento con <strong>retropropagación + SGD</strong> (Stochastic Gradient Descent).</p>
+                        <div class="tech-stack">
+                            <span class="tech-item">MLP</span>
+                            <span class="tech-item">SGD + Momentum</span>
+                            <span class="tech-item">Backpropagation</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>🔄 Pipeline de Datos</h3>
+                        <p>Escaneo → Preprocesamiento (binarización, resize 28x28) → Inferencia MLP → Postprocesamiento → Exportación CSV/JSON.</p>
+                        <div class="tech-stack">
+                            <span class="tech-item">Python / TensorFlow/Keras</span>
+                            <span class="tech-item">OpenCV</span>
+                            <span class="tech-item">Pandas / NumPy</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-showcase" style="margin-top: 1rem;">
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 100 100" fill="none">
+                            <rect x="15" y="20" width="70" height="60" rx="8" stroke="#0ff" stroke-width="1.5" fill="none"/>
+                            <text x="35" y="55" fill="#0ff" font-size="12">INPUT</text>
+                            <text x="35" y="70" fill="#8a9bb5" font-size="7">28x28 píxeles</text>
+                        </svg>
+                        <p>Capa de entrada: 784 neuronas</p>
+                    </div>
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 100 100" fill="none">
+                            <circle cx="50" cy="40" r="12" stroke="#0ff" stroke-width="1.5" fill="none"/>
+                            <circle cx="50" cy="65" r="12" stroke="#0ff" stroke-width="1.5" fill="none"/>
+                            <text x="45" y="88" fill="#8a9bb5" font-size="8">Capa oculta: 128</text>
+                        </svg>
+                        <p>Capa oculta: 128 neuronas (ReLU)</p>
+                    </div>
+                    <div class="img-placeholder">
+                        <svg viewBox="0 0 100 100" fill="none">
+                            <rect x="40" y="35" width="20" height="30" rx="3" stroke="#0ff" stroke-width="1.5" fill="none"/>
+                            <text x="44" y="55" fill="#0ff" font-size="10">10</text>
+                            <text x="42" y="85" fill="#8a9bb5" font-size="8">Salida (0-9)</text>
+                        </svg>
+                        <p>Capa de salida: 10 neuronas (Softmax)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 - IMPACTO Y RESULTADOS ESPERADOS -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>📈 Impacto y Resultados Esperados</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>🔮 Pronóstico sin solución</h3>
+                        <p>Sin este desarrollo, la brecha tecnológica se profundizará. La transcripción manual seguirá generando bases de datos con bajo nivel de integridad y procesos ineficientes, limitando la competitividad de instituciones educativas en regiones de bajos recursos.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🏆 Aporte del Proyecto</h3>
+                        <p>Prototipo funcional validado que demuestra que redes neuronales simples y de código abierto pueden reemplazar costosas soluciones comerciales (Google Document AI, Adobe Pro), democratizando el procesamiento de formularios.</p>
+                        <div class="tech-stack">
+                            <span class="tech-item">+90% precisión</span>
+                            <span class="tech-item">-80% tiempo</span>
+                            <span class="tech-item">$0 licencia</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 1rem; text-align: center;">
+                    <h3>🌍 Relevancia Social</h3>
+                    <p>Beneficiarios directos: desarrolladores e investigadores en sistemas de reconocimiento. Indirectamente, mejora herramientas aplicables en entornos educativos y administrativos reales, especialmente en el sur del Perú.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 - EQUIPO Y REFERENCIAS -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>👥 Equipo Investigador</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Docente Responsable</h3>
+                        <p style="font-size: 1.2rem; font-weight: 600; color: #0ff;">MARTIN JULIO MERMA BELLIDO</p>
+                        <p>Asignatura: Cálculo Vectorial<br>Escuela: Ingeniería de Software y Sistemas</p>
+                    </div>
+                    <div class="card">
+                        <h3>Integrantes</h3>
+                        <ul class="team-list">
+                            <li>Aliaga Ramos George Fernando</li>
+                            <li>Apaza Gonzales Carlos Jhampier</li>
+                            <li>Huallpa Huahuacondori Victor Hugo</li>
+                            <li>Merma Japura Sayi Xiomara</li>
+                            <li>Lupaca Quispe Jhon Leonel</li>
+                            <li>Perales Apaza Rubi Nicolt</li>
+                            <li>Vilca Vilca Rony Gilmer</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 1rem;">
+                    <h3>📚 Referencias Clave</h3>
+                    <p>Nielsen, M. A. (2015) - Neural Networks and Deep Learning<br>
+                    Kingma & Welling (2013) - Auto-encoding variational bayes<br>
+                    Amari, S. (1993) - Backpropagation and stochastic gradient descent method<br>
+                    Ajay Kumar R. et al. (2026) - Intelligent AI-Based Framework for Handwritten Character Recognition</p>
+                </div>
+                <footer>
+                    Universidad Nacional de Juliaca — Facultad de Ciencias de Ingenierías<br>
+                    Proyecto de Investigación Formativa 2026-I | Automatización con Redes Neuronales | Código Abierto
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones navegación -->
+    <div class="nav-btn nav-prev" id="prevSlide">←</div>
+    <div class="nav-btn nav-next" id="nextSlide">→</div>
+
+    <!-- Indicadores -->
+    <div class="indicators" id="indicators"></div>
+</div>
+
+<script>
+    // Canvas de fondo partículas
+    const canvas = document.getElementById('canvas-bg');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let particles = [];
+    const PARTICLE_COUNT = 70;
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.4;
+            this.vy = (Math.random() - 0.5) * 0.3;
+            this.size = Math.random() * 2 + 1;
+            this.alpha = Math.random() * 0.5 + 0.2;
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.y < 0) this.y = canvas.height;
+            if (this.y > canvas.height) this.y = 0;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0, 255, 255, ${this.alpha})`;
+            ctx.fill();
+        }
+    }
+
+    function initParticles() {
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            particles.push(new Particle());
+        }
+    }
+
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 100) {
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(0, 200, 255, ${0.12 * (1 - dist / 100)})`;
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+
+    function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let p of particles) {
+            p.update();
+            p.draw();
+        }
+        drawConnections();
+        requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
+
+    // SLIDER LOGIC
+    const slidesWrapper = document.getElementById('slidesWrapper');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevSlide');
+    const nextBtn = document.getElementById('nextSlide');
+    const indicatorsContainer = document.getElementById('indicators');
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    // Crear indicadores
+    function createIndicators() {
+        indicatorsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === currentIndex) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            indicatorsContainer.appendChild(dot);
+        }
+    }
+
+    function updateIndicators() {
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach((dot, idx) => {
+            if (idx === currentIndex) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function goToSlide(index) {
+        if (index < 0) index = 0;
+        if (index >= totalSlides) index = totalSlides - 1;
+        currentIndex = index;
+        const offset = -currentIndex * 100;
+        slidesWrapper.style.transform = `translateX(${offset}%)`;
+        updateIndicators();
+    }
+
+    function nextSlide() {
+        if (currentIndex < totalSlides - 1) {
+            goToSlide(currentIndex + 1);
+        } else {
+            // Loop opcional: si quieres loop infinito descomenta
+            // goToSlide(0);
+        }
+    }
+
+    function prevSlide() {
+        if (currentIndex > 0) {
+            goToSlide(currentIndex - 1);
+        }
+    }
+
+    // Event listeners
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+
+    // Inicializar
+    createIndicators();
+    goToSlide(0);
+</script>
+</body>
+</html>

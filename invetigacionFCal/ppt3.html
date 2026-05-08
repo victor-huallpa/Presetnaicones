@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación Proyecto IA - UNAJ 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --unaj-blue: #052795;
+            --unaj-gold: #E6C35B;
+            --neon-cyan: #00f2ff;
+            --dark-bg: #010409;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Sistema de Slides */
+       .slider-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+
+       .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Estética Glassmorphism */
+       .content-box {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 1100px;
+            width: 100%;
+            text-align: left;
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+        }
+
+        h1 { font-family: 'Orbitron', sans-serif; color: var(--unaj-gold); font-size: 2.5rem; margin-bottom: 1.5rem; text-transform: uppercase; }
+        h2 { font-family: 'Orbitron', sans-serif; color: var(--neon-cyan); font-size: 1.2rem; margin-bottom: 1rem; }
+        p { line-height: 1.6; font-size: 1.1rem; margin-bottom: 1rem; color: #e0e0e0; }
+        ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+        li { margin-bottom: 0.5rem; color: #ccc; }
+
+        /* Navegación */
+       .nav-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+
+       .nav-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--unaj-gold);
+            color: var(--unaj-gold);
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            transition: 0.3s;
+        }
+
+       .nav-btn:hover { background: var(--unaj-gold); color: black; box-shadow: 0 0 20px var(--unaj-gold); }
+
+       .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--neon-cyan);
+            width: 0%;
+            z-index: 101;
+            transition: 0.3s;
+        }
+
+        /* Fondos Animados por Diapositiva */
+       .slide-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.3;
+            z-index: 1;
+            object-fit: cover;
+        }
+
+       .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+       .card {
+            background: rgba(255,255,255,0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--neon-cyan);
+        }
+
+        @media (max-width: 768px) {
+           .slide { padding: 1.5rem; }
+           .content-box { padding: 1.5rem; }
+            h1 { font-size: 1.5rem; }
+           .data-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <div class="slider-container" id="slider">
+        
+        <section class="slide">
+            <img class="slide-bg" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1600" alt="IA">
+            <div class="content-box">
+                <h2>Universidad Nacional de Juliaca</h2>
+                <h1>Neural Form Processor 2026</h1>
+                <p>Automatización de formularios académicos mediante redes neuronales Perceptrón Multicapa (MLP) con aprendizaje estocástico.</p>
+                <div class="card">
+                    <p><strong>Curso:</strong> Cálculo Vectorial</p>
+                    <p><strong>Ponentes:</strong> Estudiantes de Ingeniería de Software y Sistemas</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-box">
+                <h2>01. El Problema Central</h2>
+                <h1>Ineficiencia en la Gestión de Datos</h1>
+                <p>La transcripción manual de datos numéricos en la UNAJ genera:</p>
+                <ul>
+                    <li>Demoras críticas en trámites administrativos.</li>
+                    <li>Alta probabilidad de error humano en registros estudiantiles.</li>
+                    <li>Costos elevados de licencias de software privativo (Google/Adobe) facturadas en dólares.</li>
+                </ul>
+                <p>Esta brecha tecnológica limita la competitividad de las instituciones en el sur del Perú.</p>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-box">
+                <h2>02. Propósito y Enfoque</h2>
+                <h1>Visión del Proyecto</h1>
+                <div class="data-grid">
+                    <div class="card">
+                        <h3>Objetivo</h3>
+                        <p>Eliminar la transcripción manual mediante un sistema de código abierto basado en IA.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Enfoque</h3>
+                        <p>Cuantitativo y Experimental: Medición precisa del nivel de exactitud (Accuracy) del modelo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-box">
+                <h2>03. Metodología Técnica</h2>
+                <h1>Arquitectura del Sistema</h1>
+                <p>Se utiliza el dataset <strong>MNIST</strong> (70,000 imágenes de dígitos manuscritos) para entrenar un modelo MLP.</p>
+                <ul>
+                    <li><strong>Pre-procesamiento:</strong> Aplanamiento de imágenes 28x28 a vectores de 784 dimensiones.</li>
+                    <li><strong>Algoritmo:</strong> Descenso del Gradiente Estocástico (SGD) y Retropropagación.</li>
+                    <li><strong>Marco Temporal:</strong> 14 semanas de investigación formativa.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="content-box">
+                <h2>04. Resultados y Aportes</h2>
+                <h1>Métricas de Éxito</h1>
+                <div class="data-grid">
+                    <div class="card">
+                        <h3>Precisión</h3>
+                        <p>Superior al 90% en reconocimiento de dígitos.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Velocidad</h3>
+                        <p>Procesamiento de formularios en menos de 2 segundos.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Impacto Social</h3>
+                        <p>Soberanía tecnológica y reducción de brecha digital.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Integridad</h3>
+                        <p>Eliminación total del error humano en la digitalización.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <img class="slide-bg" src="https://images.unsplash.com/photo-1583416750470-965b2707b355?auto=format&fit=crop&q=80&w=1600" alt="Puno">
+            <div class="content-box">
+                <h2>05. Veredicto Final</h2>
+                <h1>Innovación Frugal para Puno</h1>
+                <p>El proyecto es <strong>VIABLE Y SOBRESALIENTE</strong>. Representa un avance significativo en la optimización de procesos universitarios con recursos locales.</p>
+                <div class="card" style="border-left-color: var(--unaj-gold);">
+                    <p><strong>Recomendación:</strong> Evolucionar hacia arquitecturas Convolucionales (CNN) en 2026 para garantizar robustez frente a la caligrafía real del sur del Perú.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" onclick="moveSlide(-1)">ANTERIOR</button>
+        <button class="nav-btn" onclick="moveSlide(1)">SIGUIENTE</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slider = document.getElementById('slider');
+        const totalSlides = document.querySelectorAll('.slide').length;
+        const progress = document.getElementById('progress');
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const width = ((currentSlide + 1) / totalSlides) * 100;
+            progress.style.width = width + '%';
+        }
+
+        // Navegación por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' |
+
+e.key === ' ') moveSlide(1);
+            if (e.key === 'ArrowLeft') moveSlide(-1);
+        });
+
+        updateProgress();
+    </script>
+</body>
+</html>
