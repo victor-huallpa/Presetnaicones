@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algoritmos y Estructura de Datos - Presentación</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Background Effects -->
+  <div class="background">
+    <div class="bg-gradient"></div>
+    <div class="grid-pattern"></div>
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+  </div>
+
+  <!-- Navigation Control -->
+  <div class="nav-controls">
+    <button id="prevBtn" class="control-btn prev" title="Anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <path d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+    
+    <div class="progress-info">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="slide-info">
+        <span id="currentSlide">01</span> / <span id="totalSlides">01</span>
+      </div>
+    </div>
+    
+    <button id="nextBtn" class="control-btn next" title="Siguiente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <path d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Main Slides Container -->
+  <main class="slides-container" id="slidesContainer">
+    <div class="slides" id="slides">
+
+      <!-- PORTADA -->
+      <section class="slide">
+        <div class="slide-content centered">
+          <div class="header-accent"></div>
+          <h1 class="main-title">
+            <span class="title-line">ALGORITMOS</span>
+            <span class="title-line">ESTRUCTURA DE</span>
+            <span class="title-line highlight">DATOS</span>
+          </h1>
+          
+          <p class="subtitle">Evaluación — Unidad I</p>
+          
+          <div class="authors-section">
+            <h3>Estudiantes</h3>
+            <div class="authors-list">
+              <div class="author-item">George Fernando Aliaga Ramos</div>
+              <div class="author-item">Victor Hugo Huallpa Huahuacondori</div>
+              <div class="author-item">Sayi Xiomara Merma Japura</div>
+              <div class="author-item">Jhon Leonel Lupaca Quispe</div>
+            </div>
+          </div>
+          
+          <div class="institution-badge">
+            <span>🎓</span>
+            <span>UNAJ</span>
+            <span>2026</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q1: BÚSQUEDA BINARIA -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">01</span>
+            <h2>Búsqueda Binaria Iterativa</h2>
+          </div>
+          
+          <div class="problem-box">
+            <div class="box-header">
+              <span class="badge badge-problem">PROBLEMA</span>
+              <h3>Encontrar un elemento en arreglo ordenado</h3>
+            </div>
+            <div class="box-content">
+              <p>Dado un arreglo ordenado y un valor de consulta X, indicar su posición usando búsqueda binaria.</p>
+              <div class="code-block">
+                <pre>Entrada: [1, 3, 5, 7, 9, 11], X = 5
+Salida: Posición 2</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q1 SOLUCIÓN -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">01</span>
+            <h2>Búsqueda Binaria → Solución</h2>
+          </div>
+          
+          <div class="solution-box">
+            <div class="box-header">
+              <span class="badge badge-solution">SOLUCIÓN</span>
+              <h3>Divide y Conquista</h3>
+            </div>
+            <div class="algo-steps">
+              <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-text">Calcular centro: <code>mit = (ini + fin)/2</code></div>
+              </div>
+              <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-text">Comparar con valor buscado</div>
+              </div>
+              <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-text">Descartar mitad izquierda o derecha</div>
+              </div>
+              <div class="step">
+                <div class="step-icon">4</div>
+                <div class="step-text">Repetir hasta encontrar o agotar espacio</div>
+              </div>
+            </div>
+            <div class="complexity">
+              <span class="label">Complejidad:</span>
+              <span class="value">O(log n)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q2: POTENCIA RECURSIVA -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">02</span>
+            <h2>Potencia a^b (Recursiva)</h2>
+          </div>
+          
+          <div class="problem-box">
+            <div class="box-header">
+              <span class="badge badge-problem">PROBLEMA</span>
+              <h3>Calcular potencia de forma recursiva</h3>
+            </div>
+            <div class="box-content">
+              <p>Implementar un algoritmo recursivo que calcule la potencia de a elevado a la b.</p>
+              <div class="code-block">
+                <pre>a^b = a * a^(b-1)</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q2 SOLUCIÓN -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">02</span>
+            <h2>Potencia Recursiva → Solución</h2>
+          </div>
+          
+          <div class="solution-box">
+            <div class="box-header">
+              <span class="badge badge-solution">SOLUCIÓN</span>
+              <h3>Descomposición Recursiva</h3>
+            </div>
+            <div class="recursive-info">
+              <div class="case-box base-case">
+                <h4>Caso Base</h4>
+                <p>Si b = 0 → retorna 1</p>
+              </div>
+              <div class="case-box recursive-case">
+                <h4>Caso Recursivo</h4>
+                <p>Si b > 0 → retorna a * potencia(a, b-1)</p>
+              </div>
+            </div>
+            <div class="complexity">
+              <span class="label">Complejidad Tiempo:</span>
+              <span class="value">O(n)</span>
+              <span class="label">Espacio:</span>
+              <span class="value">O(n)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q3: POTENCIA ITERATIVA -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">03</span>
+            <h2>Potencia a^b (Iterativa)</h2>
+          </div>
+          
+          <div class="problem-box">
+            <div class="box-header">
+              <span class="badge badge-problem">PROBLEMA</span>
+              <h3>Calcular potencia de forma iterativa</h3>
+            </div>
+            <div class="box-content">
+              <p>Implementar la versión iterativa del cálculo de potencia usando un ciclo repetitivo.</p>
+              <div class="code-block">
+                <pre>resultado = 1
+Para i de 0 a b-1:
+  resultado = resultado * a</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q3 SOLUCIÓN -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">03</span>
+            <h2>Potencia Iterativa → Solución</h2>
+          </div>
+          
+          <div class="solution-box">
+            <div class="box-header">
+              <span class="badge badge-solution">SOLUCIÓN</span>
+              <h3>Ciclo Repetitivo</h3>
+            </div>
+            <div class="iteration-flow">
+              <div class="flow-step">
+                <span class="flow-num">Init</span>
+                <p>resultado ← 1</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <span class="flow-num">Loop</span>
+                <p>i desde 0 a b-1</p>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-step">
+                <span class="flow-num">Mult</span>
+                <p>resultado *= a</p>
+              </div>
+            </div>
+            <div class="complexity">
+              <span class="label">Complejidad Tiempo:</span>
+              <span class="value">O(n)</span>
+              <span class="label">Espacio:</span>
+              <span class="value">O(1)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q4: BÚSQUEDA SECUENCIAL -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">04</span>
+            <h2>Búsqueda Secuencial</h2>
+          </div>
+          
+          <div class="problem-box">
+            <div class="box-header">
+              <span class="badge badge-problem">PROBLEMA</span>
+              <h3>Encontrar elemento en arreglo desordenado</h3>
+            </div>
+            <div class="box-content">
+              <p>Buscar un elemento recorriendo el arreglo de inicio a fin secuencialmente.</p>
+              <div class="code-block">
+                <pre>Entrada: [3, 7, 1, 9, 5], X = 7
+Salida: Posición 1</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q4 SOLUCIÓN -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">04</span>
+            <h2>Búsqueda Secuencial → Solución</h2>
+          </div>
+          
+          <div class="solution-box">
+            <div class="box-header">
+              <span class="badge badge-solution">SOLUCIÓN</span>
+              <h3>Recorrido Lineal</h3>
+            </div>
+            <div class="algo-steps">
+              <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-text">Recorrer desde inicio</div>
+              </div>
+              <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-text">Comparar cada elemento</div>
+              </div>
+              <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-text">Si coincide, retornar posición</div>
+              </div>
+              <div class="step">
+                <div class="step-icon">4</div>
+                <div class="step-text">Si termina, elemento no existe</div>
+              </div>
+            </div>
+            <div class="complexity">
+              <span class="label">Complejidad:</span>
+              <span class="value">O(n)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q5: ORDENAMIENTO -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">05</span>
+            <h2>Ordenamiento (Bubble Sort)</h2>
+          </div>
+          
+          <div class="problem-box">
+            <div class="box-header">
+              <span class="badge badge-problem">PROBLEMA</span>
+              <h3>Ordenar arreglo de menor a mayor</h3>
+            </div>
+            <div class="box-content">
+              <p>Implementar algoritmo de ordenamiento mediante comparación y intercambio de elementos adyacentes.</p>
+              <div class="code-block">
+                <pre>Entrada: [5, 2, 8, 1, 9]
+Salida: [1, 2, 5, 8, 9]</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q5 SOLUCIÓN -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">05</span>
+            <h2>Bubble Sort → Solución</h2>
+          </div>
+          
+          <div class="solution-box">
+            <div class="box-header">
+              <span class="badge badge-solution">SOLUCIÓN</span>
+              <h3>Comparación y Intercambio</h3>
+            </div>
+            <div class="sorting-process">
+              <div class="sort-round">
+                <span class="round-label">Pasada 1</span>
+                <div class="elements">
+                  <span class="elem">5</span><span class="elem">2</span><span class="elem">8</span><span class="elem">1</span><span class="elem">9</span>
+                </div>
+              </div>
+              <div class="sort-arrow">↓</div>
+              <div class="sort-round">
+                <span class="round-label">Pasada 5</span>
+                <div class="elements">
+                  <span class="elem sorted">1</span><span class="elem sorted">2</span><span class="elem sorted">5</span><span class="elem sorted">8</span><span class="elem sorted">9</span>
+                </div>
+              </div>
+            </div>
+            <div class="complexity">
+              <span class="label">Complejidad:</span>
+              <span class="value">O(n²)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q6: MÁXIMO ELEMENTO -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">06</span>
+            <h2>Encontrar Máximo Elemento</h2>
+          </div>
+          
+          <div class="problem-box">
+            <div class="box-header">
+              <span class="badge badge-problem">PROBLEMA</span>
+              <h3>Hallar el elemento más grande</h3>
+            </div>
+            <div class="box-content">
+              <p>Encontrar y retornar el valor máximo dentro de un arreglo de números.</p>
+              <div class="code-block">
+                <pre>Entrada: [3, 7, 2, 9, 5]
+Salida: 9</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Q6 SOLUCIÓN -->
+      <section class="slide">
+        <div class="slide-content">
+          <div class="slide-header">
+            <span class="slide-number">06</span>
+            <h2>Máximo → Solución</h2>
+          </div>
+          
+          <div class="solution-box">
+            <div class="box-header">
+              <span class="badge badge-solution">SOLUCIÓN</span>
+              <h3>Recorrido y Comparación</h3>
+            </div>
+            <div class="algo-steps">
+              <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-text">Inicializar max con primer elemento</div>
+              </div>
+              <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-text">Recorrer desde segundo elemento</div>
+              </div>
+              <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-text">Si actual > max, actualizar max</div>
+              </div>
+              <div class="step">
+                <div class="step-icon">4</div>
+                <div class="step-text">Retornar máximo encontrado</div>
+              </div>
+            </div>
+            <div class="complexity">
+              <span class="label">Complejidad:</span>
+              <span class="value">O(n)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONCLUSIÓN -->
+      <section class="slide">
+        <div class="slide-content centered">
+          <div class="conclusion-box">
+            <h2>Conclusiones</h2>
+            <div class="conclusion-points">
+              <div class="point">
+                <span class="point-icon">⚡</span>
+                <p>La elección del algoritmo afecta el rendimiento</p>
+              </div>
+              <div class="point">
+                <span class="point-icon">📊</span>
+                <p>Análisis de complejidad es fundamental</p>
+              </div>
+              <div class="point">
+                <span class="point-icon">🎯</span>
+                <p>Recursión y iteración son complementarias</p>
+              </div>
+              <div class="point">
+                <span class="point-icon">🚀</span>
+                <p>Estructuras de datos organizadas mejoran búsqueda</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+      <div class="two-columns">
+
+        <div class="card">
+
+          <h2>Estrategia</h2>
+
+          <ul>
+            <li>Dividir el arreglo continuamente.</li>
+            <li>Usar:</li>
+            <li><b>ini</b> → inicio</li>
+            <li><b>fin</b> → final</li>
+            <li><b>mid</b> → punto medio</li>
+          </ul>
+
+        </div>
+
+        <div class="card">
+
+          <h2>Complejidad</h2>
+
+          <div class="big-complexity">
+            O(log n)
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PSEUDOCODIGO -->
+
+    <section class="slide">
+
+      <h1>Pseudocódigo</h1>
+
+      <div class="code-container">
+
+<pre><code class="language-cpp">
+while(ini <= fin){
+
+    mid = (ini + fin) / 2;
+
+    if(arr[mid] == x){
+        return mid;
+    }
+
+    if(x > arr[mid]){
+        ini = mid + 1;
+    }else{
+        fin = mid - 1;
+    }
+}
+</code></pre>
+
+      </div>
+
+    </section>
+
+    <!-- RECURSIVIDAD -->
+
+    <section class="slide">
+
+      <div class="title-block">
+        <span>Q2</span>
+        <h1>Potencia Recursiva</h1>
+      </div>
+
+      <div class="math-card">
+        a<sup>b</sup> = a × a<sup>b-1</sup>
+      </div>
+
+      <div class="tree">
+
+        <div class="node">2⁴</div>
+        <div class="line"></div>
+
+        <div class="node">2³</div>
+        <div class="line"></div>
+
+        <div class="node">2²</div>
+        <div class="line"></div>
+
+        <div class="node">2¹</div>
+
+      </div>
+
+    </section>
+
+    <!-- STACK -->
+
+    <section class="slide">
+
+      <h1>Stack Recursivo</h1>
+
+      <div class="stack">
+
+        <div class="stack-item">potencia(2,0)</div>
+        <div class="stack-item">potencia(2,1)</div>
+        <div class="stack-item">potencia(2,2)</div>
+        <div class="stack-item">potencia(2,3)</div>
+        <div class="stack-item">potencia(2,4)</div>
+
+      </div>
+
+    </section>
+
+    <!-- ITERATIVO -->
+
+    <section class="slide">
+
+      <div class="title-block">
+        <span>Q3</span>
+        <h1>Potencia Iterativa</h1>
+      </div>
+
+      <div class="iteration-flow">
+
+        <div class="iter-box">1</div>
+        <div class="arrow">→</div>
+
+        <div class="iter-box">2</div>
+        <div class="arrow">→</div>
+
+        <div class="iter-box">4</div>
+        <div class="arrow">→</div>
+
+        <div class="iter-box">8</div>
+        <div class="arrow">→</div>
+
+        <div class="iter-box">16</div>
+
+      </div>
+
+    </section>
+
+    <!-- COMPARACION -->
+
+    <section class="slide">
+
+      <h1>Recursivo vs Iterativo</h1>
+
+      <table>
+
+        <tr>
+          <th>Aspecto</th>
+          <th>Recursivo</th>
+          <th>Iterativo</th>
+        </tr>
+
+        <tr>
+          <td>Memoria</td>
+          <td>Mayor</td>
+          <td>Menor</td>
+        </tr>
+
+        <tr>
+          <td>Stack</td>
+          <td>Sí</td>
+          <td>No</td>
+        </tr>
+
+        <tr>
+          <td>Velocidad</td>
+          <td>Media</td>
+          <td>Alta</td>
+        </tr>
+
+      </table>
+
+    </section>
+
+    <!-- Q4 -->
+
+    <section class="slide">
+
+      <div class="title-block">
+        <span>Q4</span>
+        <h1>Serie Recursiva</h1>
+      </div>
+
+      <div class="math-card">
+        (1²+1)+(2²+1)+(3²+1)+...+(n²+1)
+      </div>
+
+      <div class="formula-box">
+        S(n) = (n² + 1) + S(n−1)
+      </div>
+
+    </section>
+
+    <!-- EJEMPLO -->
+
+    <section class="slide">
+
+      <h1>Ejemplo</h1>
+
+      <div class="example-card">
+
+        <p>S(3)</p>
+
+        <p>= (3² + 1) + S(2)</p>
+
+        <p>= 10 + (2² + 1) + S(1)</p>
+
+        <p>= 10 + 5 + 2</p>
+
+        <p class="result">= 17</p>
+
+      </div>
+
+    </section>
+
+    <!-- ITERATIVA -->
+
+    <section class="slide">
+
+      <div class="title-block">
+        <span>Q5</span>
+        <h1>Serie Iterativa</h1>
+      </div>
+
+      <div class="card">
+
+        <h2>Acumulador</h2>
+
+        <div class="sum-flow">
+
+          <div class="sum-box">0</div>
+          <div class="sum-box">2</div>
+          <div class="sum-box">7</div>
+          <div class="sum-box">17</div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- UVA -->
+
+    <section class="slide">
+
+      <div class="title-block">
+        <span>Q6</span>
+        <h1>UVa Online Judge</h1>
+      </div>
+
+      <div class="card">
+
+        <h2>Problema</h2>
+
+        <p>
+          Encontrar la primera aparición de una canica
+          utilizando búsqueda binaria modificada.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- SORT -->
+
+    <section class="slide">
+
+      <h1>Ordenamiento</h1>
+
+      <div class="sorting">
+
+        <div class="sort-box">3</div>
+        <div class="sort-box">1</div>
+        <div class="sort-box">3</div>
+        <div class="sort-box">2</div>
+        <div class="sort-box">5</div>
+        <div class="sort-box">3</div>
+
+      </div>
+
+      <div class="sort-arrow">
+        ↓
+      </div>
+
+      <div class="sorting">
+
+        <div class="sort-box active-cell">1</div>
+        <div class="sort-box active-cell">2</div>
+        <div class="sort-box active-cell">3</div>
+        <div class="sort-box active-cell">3</div>
+        <div class="sort-box active-cell">3</div>
+        <div class="sort-box active-cell">5</div>
+
+      </div>
+
+    </section>
+
+    <!-- UVA PSEUDO -->
+
+    <section class="slide">
+
+      <h1>Binary Search Modificado</h1>
+
+      <div class="code-container">
+
+<pre><code class="language-cpp">
+if(canicas[mid] == x){
+
+    resultado = mid;
+
+    fin = mid - 1;
+}
+</code></pre>
+
+      </div>
+
+    </section>
+
+    <!-- FINAL -->
+
+    <section class="slide">
+
+      <div class="hero">
+
+        <h1>Conclusiones</h1>
+
+        <div class="conclusions">
+
+          <div class="conclusion-card">
+            Búsqueda Binaria
+          </div>
+
+          <div class="conclusion-card">
+            Recursividad
+          </div>
+
+          <div class="conclusion-card">
+            Iteración
+          </div>
+
+          <div class="conclusion-card">
+            Optimización
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+  <script src="app.js"></script>
+
+</body>
+</html>

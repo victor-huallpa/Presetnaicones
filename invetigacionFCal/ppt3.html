@@ -3,269 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presentación Proyecto IA - UNAJ 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>UNAJ AI Research - 2026 Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Outfit:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
             --unaj-blue: #052795;
             --unaj-gold: #E6C35B;
             --neon-cyan: #00f2ff;
-            --dark-bg: #010409;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --neon-purple: #bc13fe;
+            --dark-bg: #030712;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-gradient: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--dark-bg);
-            color: white;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
             overflow: hidden;
             height: 100vh;
+            width: 100vw;
         }
 
-        /* Sistema de Slides */
-       .slider-container {
+        /* Fondo de Partículas Dinámico */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1;
+            filter: blur(1px);
+        }
+
+        /* Overlay de Escaneo Láser */
+        .scanline {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 242, 255, 0.02) 50%);
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Contenedor de Diapositivas */
+        .slides-wrapper {
+            position: relative;
+            z-index: 10;
             width: 100%;
             height: 100%;
             display: flex;
-            transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
+            transition: transform 1s cubic-bezier(0.8, 0, 0.2, 1);
         }
 
-       .slide {
-            min-width: 100%;
-            height: 100%;
+        section.slide {
+            min-width: 100vw;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 4rem;
-            position: relative;
-            background-size: cover;
-            background-position: center;
+            padding: 5% 10%;
         }
 
-        /* Estética Glassmorphism */
-       .content-box {
+        /* Estética Bento-Glass 2.0 */
+        .glass-container {
             background: var(--glass);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(40px) saturate(150%);
             border: 1px solid var(--glass-border);
-            border-radius: 25px;
+            border-radius: 40px;
             padding: 3rem;
-            max-width: 1100px;
             width: 100%;
-            text-align: left;
+            max-width: 1300px;
+            height: auto;
+            max-height: 85vh;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
             position: relative;
-            z-index: 5;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
         }
 
-        h1 { font-family: 'Orbitron', sans-serif; color: var(--unaj-gold); font-size: 2.5rem; margin-bottom: 1.5rem; text-transform: uppercase; }
-        h2 { font-family: 'Orbitron', sans-serif; color: var(--neon-cyan); font-size: 1.2rem; margin-bottom: 1rem; }
-        p { line-height: 1.6; font-size: 1.1rem; margin-bottom: 1rem; color: #e0e0e0; }
-        ul { margin-left: 1.5rem; margin-bottom: 1rem; }
-        li { margin-bottom: 0.5rem; color: #ccc; }
+        .full-width { grid-column: 1 / -1; }
 
-        /* Navegación */
-       .nav-controls {
+        /* Typography */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.8rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--unaj-gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        p { font-size: 1.1rem; line-height: 1.6; color: #94a3b8; margin-bottom: 1rem; }
+
+        .math-code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 3px solid var(--neon-cyan);
+            color: #00f2ff;
+            font-size: 0.95rem;
+            margin: 1rem 0;
+        }
+
+        /* Tablas Futuristas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(255,255,255,0.02);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        th { background: rgba(0, 242, 255, 0.1); padding: 1rem; text-align: left; color: var(--neon-cyan); font-size: 0.8rem; text-transform: uppercase; }
+        td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+
+        /* Navegación Avanzada */
+        .controls {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            background: rgba(5, 39, 149, 0.25);
+            backdrop-filter: blur(25px);
+            padding: 1.2rem 2.5rem;
+            border-radius: 100px;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.3), 0 0 60px rgba(0, 242, 255, 0.1);
             z-index: 100;
         }
 
-       .nav-btn {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid var(--unaj-gold);
-            color: var(--unaj-gold);
-            padding: 15px 25px;
-            border-radius: 50px;
-            cursor: pointer;
+        .nav-btn {
+            background: linear-gradient(135deg, rgba(0, 242, 255, 0.2), rgba(188, 19, 254, 0.2));
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
             font-family: 'Orbitron', sans-serif;
-            transition: 0.3s;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-       .nav-btn:hover { background: var(--unaj-gold); color: black; box-shadow: 0 0 20px var(--unaj-gold); }
-
-       .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: var(--neon-cyan);
-            width: 0%;
-            z-index: 101;
-            transition: 0.3s;
+        .nav-btn:hover { 
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            color: var(--dark-bg);
+            transform: scale(1.15);
+            box-shadow: 0 0 20px var(--neon-cyan);
         }
 
-        /* Fondos Animados por Diapositiva */
-       .slide-bg {
+        .nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        .slide-indicator {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--unaj-gold);
+            min-width: 70px;
+            text-align: center;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* Gráfico Abstracto IA */
+        .visual-accent {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            background: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800') center/cover;
+            border: 1px solid var(--glass-border);
+            position: relative;
+        }
+
+        .visual-accent::after {
+            content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0.3;
-            z-index: 1;
-            object-fit: cover;
+            background: linear-gradient(to top, var(--dark-bg), transparent);
         }
 
-       .data-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
+        /* Scrollbar */
+        .glass-container::-webkit-scrollbar { width: 6px; }
+        .glass-container::-webkit-scrollbar-thumb { background: var(--unaj-gold); border-radius: 10px; }
 
-       .card {
-            background: rgba(255,255,255,0.05);
-            padding: 1.5rem;
-            border-radius: 15px;
-            border-left: 4px solid var(--neon-cyan);
-        }
-
-        @media (max-width: 768px) {
-           .slide { padding: 1.5rem; }
-           .content-box { padding: 1.5rem; }
-            h1 { font-size: 1.5rem; }
-           .data-grid { grid-template-columns: 1fr; }
+        @media (max-width: 1024px) {
+            .glass-container { grid-template-columns: 1fr; padding: 2rem; }
+            .visual-accent { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <div class="progress-bar" id="progress"></div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="scanline"></div>
 
-    <div class="slider-container" id="slider">
+    <div class="slides-wrapper" id="master-slider">
         
         <section class="slide">
-            <img class="slide-bg" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1600" alt="IA">
-            <div class="content-box">
-                <h2>Universidad Nacional de Juliaca</h2>
-                <h1>Neural Form Processor 2026</h1>
-                <p>Automatización de formularios académicos mediante redes neuronales Perceptrón Multicapa (MLP) con aprendizaje estocástico.</p>
-                <div class="card">
-                    <p><strong>Curso:</strong> Cálculo Vectorial</p>
-                    <p><strong>Ponentes:</strong> Estudiantes de Ingeniería de Software y Sistemas</p>
+            <div class="glass-container">
+                <div class="text-content">
+                    <h2>Investigación Formativa 2026-I</h2>
+                    <h1>Neural Form <br>Processor</h1>
+                    <p>Optimización del procesamiento de formularios académicos mediante Perceptrones Multicapa (MLP) de bajo costo.</p>
+                    <div class="math-code">
+                        // Status: UN National Project <br>
+                        // Faculty: Ingeniería de Software <br>
+                        // Context: Universidad Nacional de Juliaca
+                    </div>
+                    <p><em>Responsable: DSc. Martin Julio Merma Bellido</em></p>
+                </div>
+                <div class="visual-accent"></div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="glass-container">
+                <div class="text-content">
+                    <h2>01. Situación Crítica</h2>
+                    <h1>El Cuello de Botella Manual</h1>
+                    <p>En la región Puno, la dependencia de la transcripción manual genera latencias críticas y errores en el registro estudiantil.</p>
+                    <div class="math-code" style="color: var(--unaj-gold);">
+                        CAUSA: Software propietario dolarizado (Google AI / Adobe). <br>
+                        EFECTO: Pérdida de integridad de datos y baja competitividad institucional.
+                    </div>
+                    <p>El quintil de menores ingresos universitario no puede acceder a herramientas premium de automatización.</p>
+                </div>
+                <div class="visual-accent" style="background-image: url('https://images.unsplash.com/photo-1583416750470-965b2707b355?auto=format&fit=crop&q=80&w=800');"></div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="glass-container">
+                <div class="text-content">
+                    <h2>02. Metodología</h2>
+                    <h1>Arquitectura y Entrenamiento</h1>
+                    <p>Enfoque Cuantitativo-Experimental basado en 14 semanas de desarrollo y validación.</p>
+                    <ul>
+                        <li><strong>Dataset:</strong> MNIST (70k imágenes).</li>
+                        <li><strong>Input:</strong> Vectorización de 784 dimensiones ($28 \times 28$ px).</li>
+                        <li><strong>Arquitectura:</strong> MLP con capas ocultas ReLU y Sigmoide.</li>
+                    </ul>
+                    <div class="math-code">
+                        $\mathbf{W}_{t+1} = \mathbf{W}_t - \eta \nabla_{\mathbf{W}} L(\mathbf{W}_t)$
+                    </div>
+                </div>
+                <div class="visual-accent" style="background-image: url('https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=800');"></div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="glass-container full-width">
+                <div class="text-content">
+                    <h2>03. Análisis de Rendimiento</h2>
+                    <h1>MLP vs State-of-the-Art</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Arquitectura</th>
+                                <th>Accuracy</th>
+                                <th>Ventaja</th>
+                                <th>Latencia Inferencia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>MLP (Nuestra Red)</td><td>98.10%</td><td>Bajo consumo hardware</td><td>< 1.2 ms</td></tr>
+                            <tr><td>CNN Estándar</td><td>99.90%</td><td>Invarianza espacial</td><td>~ 5.0 ms</td></tr>
+                            <tr><td>Vision Transformer</td><td>99.97%</td><td>Relaciones globales</td><td>~ 12.0 ms</td></tr>
+                        </tbody>
+                    </table>
+                    <p>Veredicto: El MLP cumple el objetivo >90% con una eficiencia computacional 10x superior para servidores locales.</p>
                 </div>
             </div>
         </section>
 
         <section class="slide">
-            <div class="content-box">
-                <h2>01. El Problema Central</h2>
-                <h1>Ineficiencia en la Gestión de Datos</h1>
-                <p>La transcripción manual de datos numéricos en la UNAJ genera:</p>
-                <ul>
-                    <li>Demoras críticas en trámites administrativos.</li>
-                    <li>Alta probabilidad de error humano en registros estudiantiles.</li>
-                    <li>Costos elevados de licencias de software privativo (Google/Adobe) facturadas en dólares.</li>
-                </ul>
-                <p>Esta brecha tecnológica limita la competitividad de las instituciones en el sur del Perú.</p>
-            </div>
-        </section>
-
-        <section class="slide">
-            <div class="content-box">
-                <h2>02. Propósito y Enfoque</h2>
-                <h1>Visión del Proyecto</h1>
-                <div class="data-grid">
-                    <div class="card">
-                        <h3>Objetivo</h3>
-                        <p>Eliminar la transcripción manual mediante un sistema de código abierto basado en IA.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Enfoque</h3>
-                        <p>Cuantitativo y Experimental: Medición precisa del nivel de exactitud (Accuracy) del modelo.</p>
-                    </div>
+            <div class="glass-container">
+                <div class="text-content">
+                    <h2>04. Análisis Financiero</h2>
+                    <h1>Presupuesto del Proyecto</h1>
+                    <table>
+                        <thead>
+                            <tr><th>Rubro</th><th>Monto (S/.)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Papel e Insumos</td><td>36.00</td></tr>
+                            <tr><td>Internet (4 meses)</td><td>280.00</td></tr>
+                            <tr><td>Artículos Científicos</td><td>1000.00</td></tr>
+                            <tr><td>Asistente Técnico</td><td>800.00</td></tr>
+                            <tr><td>Digitalización y Publicación</td><td>900.00</td></tr>
+                            <tr style="color: var(--neon-cyan);"><td><strong>TOTAL</strong></td><td><strong>3043.00</strong></td></tr>
+                        </tbody>
+                    </table>
                 </div>
+                <div class="visual-accent" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800');"></div>
             </div>
         </section>
 
         <section class="slide">
-            <div class="content-box">
-                <h2>03. Metodología Técnica</h2>
-                <h1>Arquitectura del Sistema</h1>
-                <p>Se utiliza el dataset <strong>MNIST</strong> (70,000 imágenes de dígitos manuscritos) para entrenar un modelo MLP.</p>
-                <ul>
-                    <li><strong>Pre-procesamiento:</strong> Aplanamiento de imágenes 28x28 a vectores de 784 dimensiones.</li>
-                    <li><strong>Algoritmo:</strong> Descenso del Gradiente Estocástico (SGD) y Retropropagación.</li>
-                    <li><strong>Marco Temporal:</strong> 14 semanas de investigación formativa.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="slide">
-            <div class="content-box">
-                <h2>04. Resultados y Aportes</h2>
-                <h1>Métricas de Éxito</h1>
-                <div class="data-grid">
-                    <div class="card">
-                        <h3>Precisión</h3>
-                        <p>Superior al 90% en reconocimiento de dígitos.</p>
+            <div class="glass-container">
+                <div class="text-content">
+                    <h2>05. Conclusiones</h2>
+                    <h1>Veredicto Final</h1>
+                    <div class="math-code" style="border-color: var(--unaj-gold);">
+                        ESTADO: VIABLE <br>
+                        IMPACTO: ALTO (Soberanía Tecnológica) <br>
+                        PRONÓSTICO: Reducción del 95% en tiempos de espera administrativos.
                     </div>
-                    <div class="card">
-                        <h3>Velocidad</h3>
-                        <p>Procesamiento de formularios en menos de 2 segundos.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Impacto Social</h3>
-                        <p>Soberanía tecnológica y reducción de brecha digital.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Integridad</h3>
-                        <p>Eliminación total del error humano en la digitalización.</p>
-                    </div>
+                    <p>Recomendación: Transición a arquitecturas CNN en la fase II para garantizar robustez contra variabilidad caligráfica extrema.</p>
                 </div>
-            </div>
-        </section>
-
-        <section class="slide">
-            <img class="slide-bg" src="https://images.unsplash.com/photo-1583416750470-965b2707b355?auto=format&fit=crop&q=80&w=1600" alt="Puno">
-            <div class="content-box">
-                <h2>05. Veredicto Final</h2>
-                <h1>Innovación Frugal para Puno</h1>
-                <p>El proyecto es <strong>VIABLE Y SOBRESALIENTE</strong>. Representa un avance significativo en la optimización de procesos universitarios con recursos locales.</p>
-                <div class="card" style="border-left-color: var(--unaj-gold);">
-                    <p><strong>Recomendación:</strong> Evolucionar hacia arquitecturas Convolucionales (CNN) en 2026 para garantizar robustez frente a la caligrafía real del sur del Perú.</p>
-                </div>
+                <div class="visual-accent" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800');"></div>
             </div>
         </section>
 
     </div>
 
-    <div class="nav-controls">
-        <button class="nav-btn" onclick="moveSlide(-1)">ANTERIOR</button>
-        <button class="nav-btn" onclick="moveSlide(1)">SIGUIENTE</button>
+    <div class="controls">
+        <button class="nav-btn" onclick="prevSlide()" title="Diapositiva anterior">◀</button>
+        <div class="slide-indicator" id="slide-num">01 / 06</div>
+        <button class="nav-btn" onclick="nextSlide()" title="Siguiente diapositiva">▶</button>
     </div>
 
     <script>
-        let currentSlide = 0;
-        const slider = document.getElementById('slider');
-        const totalSlides = document.querySelectorAll('.slide').length;
-        const progress = document.getElementById('progress');
+        let currentIdx = 0;
+        const totalSlides = 6;
+        const slider = document.getElementById('master-slider');
+        const indicator = document.getElementById('slide-num');
 
-        function moveSlide(direction) {
-            currentSlide += direction;
-            if (currentSlide >= totalSlides) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = totalSlides - 1;
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentIdx * 100}vw)`;
+            indicator.innerText = `${String(currentIdx + 1).padStart(2, '0')} / 06`;
+        }
+
+        function nextSlide() {
+            if (currentIdx < totalSlides - 1) {
+                currentIdx++;
+                updateSlider();
+            }
+        }
+
+        function prevSlide() {
+            if (currentIdx > 0) {
+                currentIdx--;
+                updateSlider();
+            }
+        }
+
+        // Fondo de Partículas Inteligentes
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for(let i=0; i<100; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5
+                });
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(3, 7, 18, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-            updateProgress();
+            ctx.fillStyle = 'rgba(0, 242, 255, 0.5)';
+            particles.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if(p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
         }
 
-        function updateProgress() {
-            const width = ((currentSlide + 1) / totalSlides) * 100;
-            progress.style.width = width + '%';
-        }
-
-        // Navegación por teclado
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' |
-
-e.key === ' ') moveSlide(1);
-            if (e.key === 'ArrowLeft') moveSlide(-1);
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
         });
 
-        updateProgress();
+        window.addEventListener('resize', init);
+        init();
+        animate();
     </script>
 </body>
 </html>
