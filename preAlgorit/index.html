@@ -1,846 +1,412 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Algoritmos y Estructura de Datos - Presentación</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  
-  <!-- Background Effects -->
-  <div class="background">
-    <div class="bg-gradient"></div>
-    <div class="grid-pattern"></div>
-    <div class="floating-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
-    </div>
-  </div>
+import React from 'react';
 
-  <!-- Navigation Control -->
-  <div class="nav-controls">
-    <button id="prevBtn" class="control-btn prev" title="Anterior">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-        <path d="M15 19l-7-7 7-7"/>
-      </svg>
-    </button>
-    
-    <div class="progress-info">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-      <div class="slide-info">
-        <span id="currentSlide">01</span> / <span id="totalSlides">01</span>
-      </div>
-    </div>
-    
-    <button id="nextBtn" class="control-btn next" title="Siguiente">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-        <path d="M9 5l7 7-7 7"/>
-      </svg>
-    </button>
-  </div>
+export default function PresentacionCanicas() {
+  const slides = [
+    {
+      title: "Problema de Canicas — UVa",
+      subtitle: "Ordenamiento + Búsqueda Binaria Modificada",
+      content: (
+        <div className="space-y-6">
+          <p className="text-xl text-slate-300 leading-relaxed">
+            El objetivo es determinar si un número existe dentro de una colección
+            de canicas y, si existe, encontrar su primera aparición.
+          </p>
 
-  <!-- Main Slides Container -->
-  <main class="slides-container" id="slidesContainer">
-    <div class="slides" id="slides">
-
-      <!-- PORTADA -->
-      <section class="slide">
-        <div class="slide-content centered">
-          <div class="header-accent"></div>
-          <h1 class="main-title">
-            <span class="title-line">ALGORITMOS</span>
-            <span class="title-line">ESTRUCTURA DE</span>
-            <span class="title-line highlight">DATOS</span>
-          </h1>
-          
-          <p class="subtitle">Evaluación — Unidad I</p>
-          
-          <div class="authors-section">
-            <h3>Estudiantes</h3>
-            <div class="authors-list">
-              <div class="author-item">George Fernando Aliaga Ramos</div>
-              <div class="author-item">Victor Hugo Huallpa Huahuacondori</div>
-              <div class="author-item">Sayi Xiomara Merma Japura</div>
-              <div class="author-item">Jhon Leonel Lupaca Quispe</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+            <div className="bg-slate-900/60 border border-cyan-500/30 rounded-3xl p-6 backdrop-blur-xl shadow-2xl shadow-cyan-500/10">
+              <h3 className="text-cyan-400 text-2xl font-bold mb-4">Entrada</h3>
+              <div className="bg-black/40 rounded-2xl p-4 font-mono text-lg text-slate-200">
+                3 1 3 2 5 3
+              </div>
             </div>
-          </div>
-          
-          <div class="institution-badge">
-            <span>🎓</span>
-            <span>UNAJ</span>
-            <span>2026</span>
-          </div>
-        </div>
-      </section>
 
-      <!-- Q1: BÚSQUEDA BINARIA -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">01</span>
-            <h2>Búsqueda Binaria Iterativa</h2>
-          </div>
-          
-          <div class="problem-box">
-            <div class="box-header">
-              <span class="badge badge-problem">PROBLEMA</span>
-              <h3>Encontrar un elemento en arreglo ordenado</h3>
-            </div>
-            <div class="box-content">
-              <p>Dado un arreglo ordenado y un valor de consulta X, indicar su posición usando búsqueda binaria.</p>
-              <div class="code-block">
-                <pre>Entrada: [1, 3, 5, 7, 9, 11], X = 5
-Salida: Posición 2</pre>
+            <div className="bg-slate-900/60 border border-fuchsia-500/30 rounded-3xl p-6 backdrop-blur-xl shadow-2xl shadow-fuchsia-500/10">
+              <h3 className="text-fuchsia-400 text-2xl font-bold mb-4">Consulta</h3>
+              <div className="bg-black/40 rounded-2xl p-4 font-mono text-lg text-slate-200">
+                x = 3
               </div>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- Q1 SOLUCIÓN -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">01</span>
-            <h2>Búsqueda Binaria → Solución</h2>
-          </div>
-          
-          <div class="solution-box">
-            <div class="box-header">
-              <span class="badge badge-solution">SOLUCIÓN</span>
-              <h3>Divide y Conquista</h3>
-            </div>
-            <div class="algo-steps">
-              <div class="step">
-                <div class="step-icon">1</div>
-                <div class="step-text">Calcular centro: <code>mit = (ini + fin)/2</code></div>
-              </div>
-              <div class="step">
-                <div class="step-icon">2</div>
-                <div class="step-text">Comparar con valor buscado</div>
-              </div>
-              <div class="step">
-                <div class="step-icon">3</div>
-                <div class="step-text">Descartar mitad izquierda o derecha</div>
-              </div>
-              <div class="step">
-                <div class="step-icon">4</div>
-                <div class="step-text">Repetir hasta encontrar o agotar espacio</div>
-              </div>
-            </div>
-            <div class="complexity">
-              <span class="label">Complejidad:</span>
-              <span class="value">O(log n)</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Q2: POTENCIA RECURSIVA -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">02</span>
-            <h2>Potencia a^b (Recursiva)</h2>
-          </div>
-          
-          <div class="problem-box">
-            <div class="box-header">
-              <span class="badge badge-problem">PROBLEMA</span>
-              <h3>Calcular potencia de forma recursiva</h3>
-            </div>
-            <div class="box-content">
-              <p>Implementar un algoritmo recursivo que calcule la potencia de a elevado a la b.</p>
-              <div class="code-block">
-                <pre>a^b = a * a^(b-1)</pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Q2 SOLUCIÓN -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">02</span>
-            <h2>Potencia Recursiva → Solución</h2>
-          </div>
-          
-          <div class="solution-box">
-            <div class="box-header">
-              <span class="badge badge-solution">SOLUCIÓN</span>
-              <h3>Descomposición Recursiva</h3>
-            </div>
-            <div class="recursive-info">
-              <div class="case-box base-case">
-                <h4>Caso Base</h4>
-                <p>Si b = 0 → retorna 1</p>
-              </div>
-              <div class="case-box recursive-case">
-                <h4>Caso Recursivo</h4>
-                <p>Si b > 0 → retorna a * potencia(a, b-1)</p>
-              </div>
-            </div>
-            <div class="complexity">
-              <span class="label">Complejidad Tiempo:</span>
-              <span class="value">O(n)</span>
-              <span class="label">Espacio:</span>
-              <span class="value">O(n)</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Q3: POTENCIA ITERATIVA -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">03</span>
-            <h2>Potencia a^b (Iterativa)</h2>
-          </div>
-          
-          <div class="problem-box">
-            <div class="box-header">
-              <span class="badge badge-problem">PROBLEMA</span>
-              <h3>Calcular potencia de forma iterativa</h3>
-            </div>
-            <div class="box-content">
-              <p>Implementar la versión iterativa del cálculo de potencia usando un ciclo repetitivo.</p>
-              <div class="code-block">
-                <pre>resultado = 1
-Para i de 0 a b-1:
-  resultado = resultado * a</pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Q3 SOLUCIÓN -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">03</span>
-            <h2>Potencia Iterativa → Solución</h2>
-          </div>
-          
-          <div class="solution-box">
-            <div class="box-header">
-              <span class="badge badge-solution">SOLUCIÓN</span>
-              <h3>Ciclo Repetitivo</h3>
-            </div>
-            <div class="iteration-flow">
-              <div class="flow-step">
-                <span class="flow-num">Init</span>
-                <p>resultado ← 1</p>
-              </div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">
-                <span class="flow-num">Loop</span>
-                <p>i desde 0 a b-1</p>
-              </div>
-              <div class="flow-arrow">→</div>
-              <div class="flow-step">
-                <span class="flow-num">Mult</span>
-                <p>resultado *= a</p>
-              </div>
-            </div>
-            <div class="complexity">
-              <span class="label">Complejidad Tiempo:</span>
-              <span class="value">O(n)</span>
-              <span class="label">Espacio:</span>
-              <span class="value">O(1)</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Q4: BÚSQUEDA SECUENCIAL -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">04</span>
-            <h2>Búsqueda Secuencial</h2>
-          </div>
-          
-          <div class="problem-box">
-            <div class="box-header">
-              <span class="badge badge-problem">PROBLEMA</span>
-              <h3>Encontrar elemento en arreglo desordenado</h3>
-            </div>
-            <div class="box-content">
-              <p>Buscar un elemento recorriendo el arreglo de inicio a fin secuencialmente.</p>
-              <div class="code-block">
-                <pre>Entrada: [3, 7, 1, 9, 5], X = 7
-Salida: Posición 1</pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Q4 SOLUCIÓN -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">04</span>
-            <h2>Búsqueda Secuencial → Solución</h2>
-          </div>
-          
-          <div class="solution-box">
-            <div class="box-header">
-              <span class="badge badge-solution">SOLUCIÓN</span>
-              <h3>Recorrido Lineal</h3>
-            </div>
-            <div class="algo-steps">
-              <div class="step">
-                <div class="step-icon">1</div>
-                <div class="step-text">Recorrer desde inicio</div>
-              </div>
-              <div class="step">
-                <div class="step-icon">2</div>
-                <div class="step-text">Comparar cada elemento</div>
-              </div>
-              <div class="step">
-                <div class="step-icon">3</div>
-                <div class="step-text">Si coincide, retornar posición</div>
-              </div>
-              <div class="step">
-                <div class="step-icon">4</div>
-                <div class="step-text">Si termina, elemento no existe</div>
-              </div>
-            </div>
-            <div class="complexity">
-              <span class="label">Complejidad:</span>
-              <span class="value">O(n)</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Q5: ORDENAMIENTO -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">05</span>
-            <h2>Ordenamiento (Bubble Sort)</h2>
-          </div>
-          
-          <div class="problem-box">
-            <div class="box-header">
-              <span class="badge badge-problem">PROBLEMA</span>
-              <h3>Ordenar arreglo de menor a mayor</h3>
-            </div>
-            <div class="box-content">
-              <p>Implementar algoritmo de ordenamiento mediante comparación y intercambio de elementos adyacentes.</p>
-              <div class="code-block">
-                <pre>Entrada: [5, 2, 8, 1, 9]
-Salida: [1, 2, 5, 8, 9]</pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Q5 SOLUCIÓN -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">05</span>
-            <h2>Bubble Sort → Solución</h2>
-          </div>
-          
-          <div class="solution-box">
-            <div class="box-header">
-              <span class="badge badge-solution">SOLUCIÓN</span>
-              <h3>Comparación y Intercambio</h3>
-            </div>
-            <div class="sorting-process">
-              <div class="sort-round">
-                <span class="round-label">Pasada 1</span>
-                <div class="elements">
-                  <span class="elem">5</span><span class="elem">2</span><span class="elem">8</span><span class="elem">1</span><span class="elem">9</span>
+      )
+    },
+    {
+      title: "Dificultad Principal",
+      subtitle: "El arreglo puede contener repetidos",
+      content: (
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-cyan-400 text-2xl font-bold mb-4">Problema</h3>
+            <div className="flex flex-wrap gap-4 justify-center mt-6">
+              {[1,2,3,3,3,5].map((n,i)=>(
+                <div
+                  key={i}
+                  className={`w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-bold border transition-all duration-500 ${n===3 ? 'bg-cyan-500/20 border-cyan-400 shadow-lg shadow-cyan-500/30 animate-pulse' : 'bg-slate-800 border-slate-700'}`}
+                >
+                  {n}
                 </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-slate-900/60 border border-cyan-500/20 rounded-3xl p-6 text-lg leading-relaxed text-slate-300">
+            Una búsqueda binaria tradicional puede encontrar cualquier aparición del número.
+            Sin embargo, el problema exige encontrar específicamente la primera ocurrencia.
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Etapa 1 — Ordenamiento",
+      subtitle: "Preparación para búsqueda eficiente",
+      content: (
+        <div className="space-y-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-slate-900/60 rounded-3xl border border-orange-500/30 p-6">
+              <h3 className="text-orange-400 text-2xl font-bold mb-6">Antes</h3>
+              <div className="flex gap-3 flex-wrap justify-center">
+                {[3,1,3,2,5,3].map((n,i)=>(
+                  <div key={i} className="w-16 h-16 rounded-2xl bg-orange-500/20 border border-orange-400 flex items-center justify-center text-2xl font-bold">
+                    {n}
+                  </div>
+                ))}
               </div>
-              <div class="sort-arrow">↓</div>
-              <div class="sort-round">
-                <span class="round-label">Pasada 5</span>
-                <div class="elements">
-                  <span class="elem sorted">1</span><span class="elem sorted">2</span><span class="elem sorted">5</span><span class="elem sorted">8</span><span class="elem sorted">9</span>
+            </div>
+
+            <div className="bg-slate-900/60 rounded-3xl border border-emerald-500/30 p-6">
+              <h3 className="text-emerald-400 text-2xl font-bold mb-6">Después de sort()</h3>
+              <div className="flex gap-3 flex-wrap justify-center">
+                {[1,2,3,3,3,5].map((n,i)=>(
+                  <div key={i} className="w-16 h-16 rounded-2xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-2xl font-bold animate-bounce">
+                    {n}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-black/40 rounded-3xl p-6 border border-cyan-500/20">
+            <pre className="text-cyan-300 text-lg overflow-x-auto">
+{`sort(canicas.begin(), canicas.end());`}
+            </pre>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Búsqueda Binaria",
+      subtitle: "Reducción del espacio de búsqueda",
+      content: (
+        <div className="space-y-8">
+          <div className="bg-slate-900/60 rounded-3xl border border-cyan-500/20 p-8">
+            <div className="flex justify-center gap-4 flex-wrap">
+              {[1,2,3,3,3,5].map((n,i)=>(
+                <div
+                  key={i}
+                  className={`relative w-20 h-20 rounded-2xl flex flex-col items-center justify-center text-2xl font-bold border transition-all duration-700 ${i===2 ? 'bg-cyan-500/30 border-cyan-300 scale-125 shadow-2xl shadow-cyan-500/40' : 'bg-slate-800 border-slate-700'}`}
+                >
+                  <span>{n}</span>
+                  <span className="absolute -bottom-8 text-sm text-slate-400">{i}</span>
                 </div>
-              </div>
+              ))}
             </div>
-            <div class="complexity">
-              <span class="label">Complejidad:</span>
-              <span class="value">O(n²)</span>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-slate-900/60 rounded-3xl border border-cyan-500/20 p-6 text-center">
+              <h3 className="text-cyan-400 text-2xl font-bold mb-2">ini</h3>
+              <p className="text-4xl font-black text-white">0</p>
+            </div>
+
+            <div className="bg-slate-900/60 rounded-3xl border border-fuchsia-500/20 p-6 text-center">
+              <h3 className="text-fuchsia-400 text-2xl font-bold mb-2">mit</h3>
+              <p className="text-4xl font-black text-white">2</p>
+            </div>
+
+            <div className="bg-slate-900/60 rounded-3xl border border-emerald-500/20 p-6 text-center">
+              <h3 className="text-emerald-400 text-2xl font-bold mb-2">fin</h3>
+              <p className="text-4xl font-black text-white">5</p>
+            </div>
+          </div>
+
+          <div className="bg-black/40 rounded-3xl p-6 border border-cyan-500/20 text-center">
+            <p className="text-2xl text-slate-200 font-mono">
+              mit = (ini + fin) / 2
+            </p>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Modificación Clave",
+      subtitle: "Buscar la primera ocurrencia",
+      content: (
+        <div className="space-y-8">
+          <div className="bg-slate-900/60 rounded-3xl border border-cyan-500/20 p-8">
+            <pre className="text-lg overflow-x-auto text-slate-200 leading-relaxed">
+{`if (canicas[mit] == x) {
+    resultado_idx = mit;
+    fin = mit - 1;
+}`}
+            </pre>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-cyan-500/10 border border-cyan-400/30 rounded-3xl p-6">
+              <h3 className="text-cyan-400 text-2xl font-bold mb-4">¿Qué ocurre?</h3>
+              <ul className="space-y-3 text-slate-300 text-lg">
+                <li>• Se encuentra el valor.</li>
+                <li>• Se guarda la posición actual.</li>
+                <li>• La búsqueda continúa hacia la izquierda.</li>
+              </ul>
+            </div>
+
+            <div className="bg-fuchsia-500/10 border border-fuchsia-400/30 rounded-3xl p-6">
+              <h3 className="text-fuchsia-400 text-2xl font-bold mb-4">Objetivo</h3>
+              <p className="text-slate-300 text-lg leading-relaxed">
+                Encontrar la posición más pequeña donde aparece el número.
+              </p>
             </div>
           </div>
         </div>
-      </section>
+      )
+    },
+    {
+      title: "Complejidad del Algoritmo",
+      subtitle: "Análisis temporal",
+      content: (
+        <div className="space-y-8">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-slate-900/60 border border-cyan-500/20 rounded-3xl p-8 text-center hover:scale-105 transition-transform duration-500">
+              <h3 className="text-cyan-400 text-2xl font-bold mb-4">Ordenamiento</h3>
+              <p className="text-4xl font-black text-white">O(n log n)</p>
+            </div>
 
-      <!-- Q6: MÁXIMO ELEMENTO -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">06</span>
-            <h2>Encontrar Máximo Elemento</h2>
-          </div>
-          
-          <div class="problem-box">
-            <div class="box-header">
-              <span class="badge badge-problem">PROBLEMA</span>
-              <h3>Hallar el elemento más grande</h3>
+            <div className="bg-slate-900/60 border border-fuchsia-500/20 rounded-3xl p-8 text-center hover:scale-105 transition-transform duration-500">
+              <h3 className="text-fuchsia-400 text-2xl font-bold mb-4">Consulta</h3>
+              <p className="text-4xl font-black text-white">O(log n)</p>
             </div>
-            <div class="box-content">
-              <p>Encontrar y retornar el valor máximo dentro de un arreglo de números.</p>
-              <div class="code-block">
-                <pre>Entrada: [3, 7, 2, 9, 5]
-Salida: 9</pre>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- Q6 SOLUCIÓN -->
-      <section class="slide">
-        <div class="slide-content">
-          <div class="slide-header">
-            <span class="slide-number">06</span>
-            <h2>Máximo → Solución</h2>
+            <div className="bg-slate-900/60 border border-emerald-500/20 rounded-3xl p-8 text-center hover:scale-105 transition-transform duration-500">
+              <h3 className="text-emerald-400 text-2xl font-bold mb-4">Total</h3>
+              <p className="text-3xl font-black text-white">O(n log n + q log n)</p>
+            </div>
           </div>
-          
-          <div class="solution-box">
-            <div class="box-header">
-              <span class="badge badge-solution">SOLUCIÓN</span>
-              <h3>Recorrido y Comparación</h3>
-            </div>
-            <div class="algo-steps">
-              <div class="step">
-                <div class="step-icon">1</div>
-                <div class="step-text">Inicializar max con primer elemento</div>
-              </div>
-              <div class="step">
-                <div class="step-icon">2</div>
-                <div class="step-text">Recorrer desde segundo elemento</div>
-              </div>
-              <div class="step">
-                <div class="step-icon">3</div>
-                <div class="step-text">Si actual > max, actualizar max</div>
-              </div>
-              <div class="step">
-                <div class="step-icon">4</div>
-                <div class="step-text">Retornar máximo encontrado</div>
-              </div>
-            </div>
-            <div class="complexity">
-              <span class="label">Complejidad:</span>
-              <span class="value">O(n)</span>
-            </div>
+
+          <div className="bg-black/40 rounded-3xl p-8 border border-cyan-500/20 text-center">
+            <p className="text-2xl text-slate-300 leading-relaxed">
+              La búsqueda binaria es eficiente porque reduce el espacio de búsqueda a la mitad en cada iteración.
+            </p>
           </div>
         </div>
-      </section>
+      )
+    },
+    {
+      title: "Código Completo",
+      subtitle: "Implementación final en C++",
+      content: (
+        <div className="bg-black/60 rounded-3xl border border-cyan-500/20 p-6 overflow-auto max-h-[550px]">
+          <pre className="text-sm text-slate-200 leading-relaxed">
+{`#include <iostream>
+#include <vector>
+#include <algorithm>
 
-      <!-- CONCLUSIÓN -->
-      <section class="slide">
-        <div class="slide-content centered">
-          <div class="conclusion-box">
-            <h2>Conclusiones</h2>
-            <div class="conclusion-points">
-              <div class="point">
-                <span class="point-icon">⚡</span>
-                <p>La elección del algoritmo afecta el rendimiento</p>
-              </div>
-              <div class="point">
-                <span class="point-icon">📊</span>
-                <p>Análisis de complejidad es fundamental</p>
-              </div>
-              <div class="point">
-                <span class="point-icon">🎯</span>
-                <p>Recursión y iteración son complementarias</p>
-              </div>
-              <div class="point">
-                <span class="point-icon">🚀</span>
-                <p>Estructuras de datos organizadas mejoran búsqueda</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+using namespace std;
 
-    </div>
-  </main>
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-  <script src="app.js"></script>
-</body>
-</html>
+    int n, q;
+    int caso = 1;
 
-  <script src="app.js"></script>
-</body>
-</html>
+    while (cin >> n >> q && (n != 0 || q != 0)) {
 
-      <div class="two-columns">
+        cout << "CASE# " << caso << ":\\n";
+        caso++;
 
-        <div class="card">
+        vector<int> canicas(n);
 
-          <h2>Estrategia</h2>
+        for (int i = 0; i < n; i++) {
+            cin >> canicas[i];
+        }
 
-          <ul>
-            <li>Dividir el arreglo continuamente.</li>
-            <li>Usar:</li>
-            <li><b>ini</b> → inicio</li>
-            <li><b>fin</b> → final</li>
-            <li><b>mid</b> → punto medio</li>
-          </ul>
+        sort(canicas.begin(), canicas.end());
 
-        </div>
+        for (int i = 0; i < q; i++) {
+            int x;
+            cin >> x;
 
-        <div class="card">
+            int ini = 0;
+            int fin = n - 1;
+            int resultado_idx = -1;
 
-          <h2>Complejidad</h2>
+            while (ini <= fin) {
+                int mit = (ini + fin) / 2;
 
-          <div class="big-complexity">
-            O(log n)
-          </div>
+                if (canicas[mit] == x) {
+                    resultado_idx = mit;
+                    fin = mit - 1;
+                }
+                else if (x > canicas[mit]) {
+                    ini = mit + 1;
+                }
+                else {
+                    fin = mit - 1;
+                }
+            }
 
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- PSEUDOCODIGO -->
-
-    <section class="slide">
-
-      <h1>Pseudocódigo</h1>
-
-      <div class="code-container">
-
-<pre><code class="language-cpp">
-while(ini <= fin){
-
-    mid = (ini + fin) / 2;
-
-    if(arr[mid] == x){
-        return mid;
+            if (resultado_idx != -1) {
+                cout << x << " found at "
+                     << resultado_idx + 1 << "\\n";
+            }
+            else {
+                cout << x << " not found\\n";
+            }
+        }
     }
 
-    if(x > arr[mid]){
-        ini = mid + 1;
-    }else{
-        fin = mid - 1;
+    return 0;
+}`}
+          </pre>
+        </div>
+      )
+    },
+    {
+      title: "Conclusión",
+      subtitle: "Idea fundamental del problema",
+      content: (
+        <div className="space-y-8 text-center">
+          <div className="bg-gradient-to-r from-cyan-500/10 to-fuchsia-500/10 border border-cyan-500/20 rounded-3xl p-10">
+            <h3 className="text-4xl font-black text-white mb-6">
+              Lower Bound Manual
+            </h3>
+
+            <p className="text-2xl text-slate-300 leading-relaxed max-w-4xl mx-auto">
+              La solución modifica la búsqueda binaria tradicional para encontrar
+              la primera aparición de un elemento dentro de un arreglo ordenado.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              'Ordenamiento eficiente',
+              'Búsqueda binaria optimizada',
+              'Manejo correcto de repetidos'
+            ].map((item, i)=>(
+              <div key={i} className="bg-slate-900/60 border border-cyan-500/20 rounded-3xl p-6 hover:-translate-y-2 transition-transform duration-500">
+                <p className="text-xl font-bold text-cyan-300">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
     }
+  ];
+
+  const [current, setCurrent] = React.useState(0);
+
+  const nextSlide = () => {
+    if (current < slides.length - 1) {
+      setCurrent(current + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (current > 0) {
+      setCurrent(current - 1);
+    }
+  };
+
+  React.useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    };
+
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [current]);
+
+  return (
+    <div className="min-h-screen bg-[#020617] text-white overflow-hidden relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(6,182,212,0.15),transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(217,70,239,0.15),transparent_30%)]"></div>
+
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+      </div>
+
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <header className="flex items-center justify-between px-10 py-6 border-b border-slate-800 backdrop-blur-xl bg-slate-950/30">
+          <div>
+            <h1 className="text-3xl font-black bg-gradient-to-r from-cyan-400 to-fuchsia-500 bg-clip-text text-transparent">
+              Búsqueda Binaria — UVa
+            </h1>
+            <p className="text-slate-400 mt-1">
+              Presentación interactiva
+            </p>
+          </div>
+
+          <div className="text-right">
+            <p className="text-slate-400 text-sm">Diapositiva</p>
+            <p className="text-2xl font-black text-cyan-400">
+              {current + 1}/{slides.length}
+            </p>
+          </div>
+        </header>
+
+        <main className="flex-1 flex items-center justify-center px-10 py-8">
+          <div className="w-full max-w-7xl">
+            <div className="bg-slate-950/40 backdrop-blur-2xl border border-slate-800 rounded-[40px] p-10 shadow-2xl shadow-cyan-500/10 animate-in fade-in duration-700">
+              <div className="mb-10">
+                <h2 className="text-6xl font-black leading-tight bg-gradient-to-r from-cyan-300 via-white to-fuchsia-400 bg-clip-text text-transparent">
+                  {slides[current].title}
+                </h2>
+
+                <p className="text-2xl text-slate-400 mt-4">
+                  {slides[current].subtitle}
+                </p>
+              </div>
+
+              <div className="min-h-[500px]">
+                {slides[current].content}
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <footer className="px-10 py-6 flex items-center justify-between border-t border-slate-800 bg-slate-950/30 backdrop-blur-xl">
+          <button
+            onClick={prevSlide}
+            className="px-8 py-4 rounded-2xl bg-slate-800 hover:bg-slate-700 transition-all duration-300 font-bold text-lg disabled:opacity-40"
+            disabled={current === 0}
+          >
+            ← Anterior
+          </button>
+
+          <div className="flex gap-3">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`transition-all duration-500 rounded-full ${
+                  current === i
+                    ? 'w-14 h-4 bg-cyan-400 shadow-lg shadow-cyan-400/50'
+                    : 'w-4 h-4 bg-slate-700 hover:bg-slate-500'
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={nextSlide}
+            className="px-8 py-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 transition-all duration-300 font-bold text-lg text-slate-950 disabled:opacity-40"
+            disabled={current === slides.length - 1}
+          >
+            Siguiente →
+          </button>
+        </footer>
+      </div>
+    </div>
+  );
 }
-</code></pre>
-
-      </div>
-
-    </section>
-
-    <!-- RECURSIVIDAD -->
-
-    <section class="slide">
-
-      <div class="title-block">
-        <span>Q2</span>
-        <h1>Potencia Recursiva</h1>
-      </div>
-
-      <div class="math-card">
-        a<sup>b</sup> = a × a<sup>b-1</sup>
-      </div>
-
-      <div class="tree">
-
-        <div class="node">2⁴</div>
-        <div class="line"></div>
-
-        <div class="node">2³</div>
-        <div class="line"></div>
-
-        <div class="node">2²</div>
-        <div class="line"></div>
-
-        <div class="node">2¹</div>
-
-      </div>
-
-    </section>
-
-    <!-- STACK -->
-
-    <section class="slide">
-
-      <h1>Stack Recursivo</h1>
-
-      <div class="stack">
-
-        <div class="stack-item">potencia(2,0)</div>
-        <div class="stack-item">potencia(2,1)</div>
-        <div class="stack-item">potencia(2,2)</div>
-        <div class="stack-item">potencia(2,3)</div>
-        <div class="stack-item">potencia(2,4)</div>
-
-      </div>
-
-    </section>
-
-    <!-- ITERATIVO -->
-
-    <section class="slide">
-
-      <div class="title-block">
-        <span>Q3</span>
-        <h1>Potencia Iterativa</h1>
-      </div>
-
-      <div class="iteration-flow">
-
-        <div class="iter-box">1</div>
-        <div class="arrow">→</div>
-
-        <div class="iter-box">2</div>
-        <div class="arrow">→</div>
-
-        <div class="iter-box">4</div>
-        <div class="arrow">→</div>
-
-        <div class="iter-box">8</div>
-        <div class="arrow">→</div>
-
-        <div class="iter-box">16</div>
-
-      </div>
-
-    </section>
-
-    <!-- COMPARACION -->
-
-    <section class="slide">
-
-      <h1>Recursivo vs Iterativo</h1>
-
-      <table>
-
-        <tr>
-          <th>Aspecto</th>
-          <th>Recursivo</th>
-          <th>Iterativo</th>
-        </tr>
-
-        <tr>
-          <td>Memoria</td>
-          <td>Mayor</td>
-          <td>Menor</td>
-        </tr>
-
-        <tr>
-          <td>Stack</td>
-          <td>Sí</td>
-          <td>No</td>
-        </tr>
-
-        <tr>
-          <td>Velocidad</td>
-          <td>Media</td>
-          <td>Alta</td>
-        </tr>
-
-      </table>
-
-    </section>
-
-    <!-- Q4 -->
-
-    <section class="slide">
-
-      <div class="title-block">
-        <span>Q4</span>
-        <h1>Serie Recursiva</h1>
-      </div>
-
-      <div class="math-card">
-        (1²+1)+(2²+1)+(3²+1)+...+(n²+1)
-      </div>
-
-      <div class="formula-box">
-        S(n) = (n² + 1) + S(n−1)
-      </div>
-
-    </section>
-
-    <!-- EJEMPLO -->
-
-    <section class="slide">
-
-      <h1>Ejemplo</h1>
-
-      <div class="example-card">
-
-        <p>S(3)</p>
-
-        <p>= (3² + 1) + S(2)</p>
-
-        <p>= 10 + (2² + 1) + S(1)</p>
-
-        <p>= 10 + 5 + 2</p>
-
-        <p class="result">= 17</p>
-
-      </div>
-
-    </section>
-
-    <!-- ITERATIVA -->
-
-    <section class="slide">
-
-      <div class="title-block">
-        <span>Q5</span>
-        <h1>Serie Iterativa</h1>
-      </div>
-
-      <div class="card">
-
-        <h2>Acumulador</h2>
-
-        <div class="sum-flow">
-
-          <div class="sum-box">0</div>
-          <div class="sum-box">2</div>
-          <div class="sum-box">7</div>
-          <div class="sum-box">17</div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- UVA -->
-
-    <section class="slide">
-
-      <div class="title-block">
-        <span>Q6</span>
-        <h1>UVa Online Judge</h1>
-      </div>
-
-      <div class="card">
-
-        <h2>Problema</h2>
-
-        <p>
-          Encontrar la primera aparición de una canica
-          utilizando búsqueda binaria modificada.
-        </p>
-
-      </div>
-
-    </section>
-
-    <!-- SORT -->
-
-    <section class="slide">
-
-      <h1>Ordenamiento</h1>
-
-      <div class="sorting">
-
-        <div class="sort-box">3</div>
-        <div class="sort-box">1</div>
-        <div class="sort-box">3</div>
-        <div class="sort-box">2</div>
-        <div class="sort-box">5</div>
-        <div class="sort-box">3</div>
-
-      </div>
-
-      <div class="sort-arrow">
-        ↓
-      </div>
-
-      <div class="sorting">
-
-        <div class="sort-box active-cell">1</div>
-        <div class="sort-box active-cell">2</div>
-        <div class="sort-box active-cell">3</div>
-        <div class="sort-box active-cell">3</div>
-        <div class="sort-box active-cell">3</div>
-        <div class="sort-box active-cell">5</div>
-
-      </div>
-
-    </section>
-
-    <!-- UVA PSEUDO -->
-
-    <section class="slide">
-
-      <h1>Binary Search Modificado</h1>
-
-      <div class="code-container">
-
-<pre><code class="language-cpp">
-if(canicas[mid] == x){
-
-    resultado = mid;
-
-    fin = mid - 1;
-}
-</code></pre>
-
-      </div>
-
-    </section>
-
-    <!-- FINAL -->
-
-    <section class="slide">
-
-      <div class="hero">
-
-        <h1>Conclusiones</h1>
-
-        <div class="conclusions">
-
-          <div class="conclusion-card">
-            Búsqueda Binaria
-          </div>
-
-          <div class="conclusion-card">
-            Recursividad
-          </div>
-
-          <div class="conclusion-card">
-            Iteración
-          </div>
-
-          <div class="conclusion-card">
-            Optimización
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-
-  <script src="app.js"></script>
-
-</body>
-</html>
